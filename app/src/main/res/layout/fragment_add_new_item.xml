@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_margin="20dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:cardPreventCornerOverlap="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/itemNameXMl"
+                    android:hint="Enter Item Name"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/itemNameXMl"
+                    android:layout_margin="10dp"
+                    android:inputType="number"
+                    android:hint="Enter item price in BDT"
+                    android:id="@+id/itemPriceXML" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinnerItemCategoryXML"
+                    android:layout_below="@id/itemPriceXML"
+                    android:layout_margin="10dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/spinnerItemCategoryXML"
+                    android:id="@+id/addImageForItemXML"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/buttons_shape"
+                    android:text="@string/import_image"
+                    android:textColor="@android:color/white"
+                    android:textAllCaps="false"/>
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/imageThumbnailOfImportedImageXML"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_margin="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@id/addImageForItemXML"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageThumbnailOfImportedImageXML"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:text="@string/menu_add_item"
+                    android:textAllCaps="false"
+                    android:background="@drawable/buttons_shape"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/addItemButtonXML"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </ScrollView>
+
+</RelativeLayout>

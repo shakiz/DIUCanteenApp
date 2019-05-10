@@ -1,0 +1,159 @@
+package app.com.diucanteenapp.SharedActivities;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import app.com.diucanteenapp.Admin.AdminHomeActivity;
+import app.com.diucanteenapp.SharedDatabaseClasses.DatabaseHelperLoginAndRegistration;
+import app.com.diucanteenapp.R;
+import app.com.diucanteenapp.Student.Ac.Activities.FoodCategoryActivity;
+
+public class LoginActivity extends AppCompatActivity {
+
+    private TextView registerYourself;
+    private Button loginButton;
+    private EditText email,password;
+    private String emailStr,passwordStr,userTypeStr;
+    private Spinner userTypeSpinner;
+    private ArrayList<String> spinnerDataArrayList;
+    private ArrayAdapter<String> spinnerArrayAdapter;
+    private DatabaseHelperLoginAndRegistration databaseHelperLoginAndRegistration;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        //This method will be used to initialize all the attributes with xml
+        init();
+        //This method will be used to insert data into spinnerDataArrayList
+        insertData();
+        //This method will be used to populate the spinner by using array adapter
+        setSpinnerAdapter();
+        //Setting the on item select listener for spinner user type
+        userTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                userTypeStr=adapterView.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(getApplicationContext(),"Please select user type",Toast.LENGTH_SHORT).show();
+            }
+        });
+        //Setting the on click listener for login button
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Storing the user entered data into variables
+                emailStr=email.getText().toString();
+                passwordStr=password.getText().toString();
+                //This method will be used to validate user inputs
+                inputValidation(emailStr,passwordStr);
+            }
+        });
+
+        //Setting the on click listener for register yourself textview
+        registerYourself.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+            }
+        });
+    }
+
+    private void setSpinnerAdapter() {
+        // Creating adapter for spinner
+        spinnerArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,spinnerDataArrayList);
+        // Drop down layout style - list view with radio button
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // attaching data adapter to spinner
+        userTypeSpinner.setAdapter(spinnerArrayAdapter);
+    }
+
+    private void insertData() {
+        spinnerDataArrayList.add("Select user type");
+        spinnerDataArrayList.add("Student");
+        spinnerDataArrayList.add("Admin");
+    }
+
+    private void inputValidation(String emailStr,String passwordStr) {
+        if (userTypeStr.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Please select user type",Toast.LENGTH_SHORT).show();
+        }
+        else if (userTypeStr.equals("Select user type")){
+            Toast.makeText(getApplicationContext(),"Please select user type",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            if (emailStr.isEmpty() && passwordStr.isEmpty()){
+                email.setError("Field can not be empty");
+            }
+            else if (emailStr.isEmpty() || passwordStr.isEmpty()){
+                password.setError("Field can not be empty.");
+            }
+            else{
+                //This method will be used to login an user based on user type
+                login(emailStr,passwordStr,userTypeStr);
+            }
+        }
+    }
+
+    private void login(String emailStr,String passwordStr,String userTypeStr) {
+        if (userTypeStr.equals("Admin")){
+            //Here we are checking the email and password for admin with the admin table
+            try{
+                if (databaseHelperLoginAndRegistration.checkAdmin(emailStr,passwordStr)){
+                    Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+                    //Starting the admin activity
+                    startActivity(new Intent(LoginActivity.this,AdminHomeActivity.class)
+                                    .putExtra("email",emailStr));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Login unsuccessful",Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception e){
+                Log.v("ERROR","Admin login : "+e.getMessage());
+            }
+        }
+        else if (userTypeStr.equals("Student")){
+            //If the user type is student then go for the user table and match the email and password
+            if (databaseHelperLoginAndRegistration.checkStudent(emailStr,passwordStr)){
+                Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+                //Starting the user activity for the item category
+                startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class)
+                                .putExtra("email",emailStr));
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Login unsuccessful",Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+            Log.v("USER TYPE : ","Please insert valid user type.");
+        }
+    }
+
+
+    //This method will be used to initialize all the attributes with xml
+    public void init(){
+        registerYourself=findViewById(R.id.registerYourselfXML);
+        loginButton=findViewById(R.id.logInButtonXML);
+        email=findViewById(R.id.emailXML);
+        password=findViewById(R.id.passwordXML);
+        userTypeSpinner=findViewById(R.id.userTypeSpinnerXML);
+        spinnerDataArrayList=new ArrayList<>();
+        databaseHelperLoginAndRegistration =new DatabaseHelperLoginAndRegistration(getApplicationContext());
+    }
+}

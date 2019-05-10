@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="match_parent"
+    tools:context=".SharedActivities.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_margin="20dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:cardPreventCornerOverlap="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/linearlayoutheading"
+                    android:gravity="center_horizontal"
+                    android:background="@color/colorPrimary"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_auth_black_24dp"
+                        android:tint="@android:color/white"
+                        android:background="@drawable/circle"
+                        android:contentDescription="null" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="@string/login"
+                        android:gravity="center_horizontal"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/white"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/imageview1forReectangle"
+                    android:layout_below="@id/linearlayoutheading"
+                    android:src="@drawable/square"
+                    android:layout_marginTop="-15dp"
+                    android:layout_centerHorizontal="true"
+                    android:rotation="45"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:id="@+id/relativeLayoutForEmailSection"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/imageview1forReectangle">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:tint="@android:color/white"
+                        android:background="@color/colorPrimary"
+                        android:padding="8dp"
+                        tools:contentDescription="null"
+                        android:id="@+id/imageViewUSerIcon"
+                        android:src="@drawable/ic_person_black_24dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/imageViewUSerIcon"
+                        android:layout_alignParentTop="true"
+                        android:hint="Email"
+                        android:paddingLeft="20dp"
+                        android:id="@+id/emailXML"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="@+id/imageViewUSerIcon"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relativeLayoutForPasswordSection"
+                    android:padding="5dp"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/relativeLayoutForEmailSection">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:tint="@android:color/white"
+                        android:background="@color/colorPrimary"
+                        android:padding="8dp"
+                        android:id="@+id/imageViewUSerPassword"
+                        android:src="@drawable/ic_pass_key_black_24dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/passwordXML"
+                        android:layout_toRightOf="@+id/imageViewUSerPassword"
+                        android:layout_alignParentTop="true"
+                        android:hint="Password"
+                        tools:contentDescription="null"
+                        android:inputType="numberPassword"
+                        android:textSize="15sp"
+                        android:paddingLeft="20dp"
+                        android:layout_alignParentBottom="@+id/imageViewUSerPassword"
+                        android:importantForAutofill="no" />
+                </RelativeLayout>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/relativeLayoutForPasswordSection"
+                    android:id="@+id/userTypeSpinnerXML"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"/>
+
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userTypeSpinnerXML"
+                    android:id="@+id/logInButtonXML"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/textColor"
+                    android:text="@string/login"
+                    android:layout_margin="30dp"
+                    android:background="@drawable/buttons_shape"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/logInButtonXML"
+                    android:padding="5dp"
+                    android:layout_margin="5dp"
+                    android:text="@string/register_yourself"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:id="@+id/registerYourselfXML"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </ScrollView>
+
+</RelativeLayout>
