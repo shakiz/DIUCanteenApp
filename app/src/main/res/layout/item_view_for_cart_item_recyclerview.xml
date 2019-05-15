@@ -14,10 +14,11 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:gravity="center"
           android:orientation="horizontal">
 
           <TextView
-              android:layout_width="wrap_content"
+              android:layout_width="150dp"
               android:layout_height="wrap_content"
               android:text="Item name"
               android:padding="5dp"
@@ -72,36 +73,51 @@
 
        </LinearLayout>
 
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Total"
+               android:layout_marginTop="5dp"
+               android:textSize="18sp"
+               android:gravity="center"
+               android:id="@+id/totalAmountXML"/>
+
+       </LinearLayout>
+
    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Order"
+            android:layout_marginTop="10dp"
             android:textAllCaps="false"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
-            android:padding="10dp"
-            android:layout_margin="15dp"
             android:id="@+id/placeOrderButtonXML"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Delete"
+            android:layout_margin="10dp"
             android:textAllCaps="false"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
-            android:padding="10dp"
-            android:layout_margin="15dp"
             android:id="@+id/deleteItemButtonXML"/>
 
     </LinearLayout>

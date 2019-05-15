@@ -1,9 +1,11 @@
 package app.com.diucanteenapp.SharedActivities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.LogPrinter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,7 @@ import app.com.diucanteenapp.Student.Ac.Activities.FoodCategoryActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private String TAG="LoginActivity";
     private TextView registerYourself;
     private Button loginButton;
     private EditText email,password;
@@ -30,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private ArrayList<String> spinnerDataArrayList;
     private ArrayAdapter<String> spinnerArrayAdapter;
     private DatabaseHelperLoginAndRegistration databaseHelperLoginAndRegistration;
+    private SharedPreferences userDetailsSharedPreferences;
+    private SharedPreferences.Editor userDetailsEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,25 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //This method will be used to initialize all the attributes with xml
         init();
+//        //Here we are checking if an user is already logged on or not
+        try{
+            if (userDetailsSharedPreferences.getString("type",null).equals("Admin")){
+                startActivity(new Intent(LoginActivity.this,AdminHomeActivity.class));
+            }
+            else{
+                startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class));
+            }
+        }
+        catch (Exception e){
+            Log.v(TAG,e.getMessage());
+        }
+        try{
+            Log.v(TAG,""+userDetailsSharedPreferences.getString("email",null));
+            Log.v(TAG,""+userDetailsSharedPreferences.getString("type",null));
+        }
+        catch (Exception e){
+            Log.v(TAG,e.getMessage());
+        }
         //This method will be used to insert data into spinnerDataArrayList
         insertData();
         //This method will be used to populate the spinner by using array adapter
@@ -116,9 +140,12 @@ public class LoginActivity extends AppCompatActivity {
             try{
                 if (databaseHelperLoginAndRegistration.checkAdmin(emailStr,passwordStr)){
                     Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+                    //Here we are adding the user email for the purpose of session [For admin]
+                    userDetailsEditor.putString("email",emailStr);
+                    userDetailsEditor.putString("type",userTypeStr);
+                    userDetailsEditor.commit();
                     //Starting the admin activity
-                    startActivity(new Intent(LoginActivity.this,AdminHomeActivity.class)
-                                    .putExtra("email",emailStr));
+                    startActivity(new Intent(LoginActivity.this,AdminHomeActivity.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Login unsuccessful",Toast.LENGTH_SHORT).show();
@@ -132,9 +159,12 @@ public class LoginActivity extends AppCompatActivity {
             //If the user type is student then go for the user table and match the email and password
             if (databaseHelperLoginAndRegistration.checkStudent(emailStr,passwordStr)){
                 Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+                //Here we are adding the user email for the purpose of session [For student]
+                userDetailsEditor.putString("email",emailStr);
+                userDetailsEditor.putString("type",userTypeStr);
+                userDetailsEditor.commit();
                 //Starting the user activity for the item category
-                startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class)
-                                .putExtra("email",emailStr));
+                startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class));
             }
             else{
                 Toast.makeText(getApplicationContext(),"Login unsuccessful",Toast.LENGTH_SHORT).show();
@@ -155,5 +185,8 @@ public class LoginActivity extends AppCompatActivity {
         userTypeSpinner=findViewById(R.id.userTypeSpinnerXML);
         spinnerDataArrayList=new ArrayList<>();
         databaseHelperLoginAndRegistration =new DatabaseHelperLoginAndRegistration(getApplicationContext());
+        //The following two lines of code will be used to start a session for the user
+        userDetailsSharedPreferences=getSharedPreferences("user_details",MODE_PRIVATE);
+        userDetailsEditor=userDetailsSharedPreferences.edit();
     }
 }

@@ -1,9 +1,12 @@
 package app.com.diucanteenapp.Student.Ac.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.support.design.widget.TabLayout;
@@ -11,9 +14,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import app.com.diucanteenapp.R;
+import app.com.diucanteenapp.SharedActivities.LoginActivity;
 import app.com.diucanteenapp.Student.Ac.Fragments.DrinksFragment;
 import app.com.diucanteenapp.Student.Ac.Fragments.EveningSnacksFragment;
 import app.com.diucanteenapp.Student.Ac.Fragments.LunchFragment;
@@ -26,6 +32,9 @@ public class FoodCategoryActivity extends AppCompatActivity {
     private TextView addCartDetails;
     private String email;
     private Bundle userEmailBundle;
+    private String TAG="FoodCategoryActivity";
+    private SharedPreferences userDetailsSharedPref;
+    private SharedPreferences.Editor userDetailsSharedPredEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +42,6 @@ public class FoodCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_category);
         //This method will be used to initialize all the attributes with xml and takes view as the parameter
         init();
-
-        //This method will be used to get email of the logged on admin
-        getIntentData();
 
         //Setting the on click listener for add cart details
         addCartDetails.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +52,7 @@ public class FoodCategoryActivity extends AppCompatActivity {
         });
         //Setting up the viewpager for three different fragments
         setupViewPager(viewPager);
-        //Setting the viewpager with tablayout
+        //Setting the viewpager with tabLayout
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -54,13 +60,18 @@ public class FoodCategoryActivity extends AppCompatActivity {
         viewPager=findViewById(R.id.viewPagerXML);
         tabLayout=findViewById(R.id.tabXML);
         addCartDetails=findViewById(R.id.addToCartXML);
+        userDetailsSharedPref=getSharedPreferences("user_details",MODE_PRIVATE);
+        userDetailsSharedPredEditor=userDetailsSharedPref.edit();
+
+        email=userDetailsSharedPref.getString("email",null);
+        try{
+            Log.v("Email : ",email);
+        }
+        catch (Exception e){
+            Log.v(TAG,""+e.getMessage());
+        }
     }
 
-    public void getIntentData(){
-        Intent intent=getIntent();
-        email=intent.getStringExtra("email");
-        Log.v("Email : ",email);
-    }
 
     private void setupViewPager(ViewPager viewPager) {
         userEmailBundle =new Bundle();
@@ -114,6 +125,29 @@ public class FoodCategoryActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //This will create the option menu on the top of the activity
+        getMenuInflater().inflate(R.menu.student_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Here we are taking the id and passing it to switch in order to perform several actions based on the id
+        int id=item.getItemId();
+        switch (id){
+            case R.id.menu_signOutStu:
+                userDetailsSharedPredEditor.clear();
+                userDetailsSharedPredEditor.commit();
+                Toast.makeText(getApplicationContext(),"Signing out",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(FoodCategoryActivity.this, LoginActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

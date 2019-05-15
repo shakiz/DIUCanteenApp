@@ -24,7 +24,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     private StoreFoodItemData storeFoodItemData;
     private DatabaseHelperSaveCartDetails databaseHelperSaveCartDetails;
     private Context context;
-    private int itemQuantity=1;
+    private int itemQuantity=0;
     private String userEmailStr;
     private OrderItemModel orderItemModel;
     private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
@@ -45,22 +45,25 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         final CartModel cartModel=cartModelArrayList.get(i);
         viewHolder.itemName.setText(cartModel.getItemName());
         viewHolder.itemPrice.setText(storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName())+""+" Tk.");
         viewHolder.increaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewHolder.itemQuantity.setText(""+(++itemQuantity));
+                itemQuantity=++itemQuantity;
+                viewHolder.itemQuantity.setText(""+itemQuantity);
+                viewHolder.totalAmount.setText(""+(itemQuantity*storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName()))+" Tk.");
             }
         });
         viewHolder.decreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (itemQuantity>0){
-                    viewHolder.itemQuantity.setText(""+(--itemQuantity));
-
+                    itemQuantity=--itemQuantity;
+                    viewHolder.itemQuantity.setText(""+itemQuantity);
+                    viewHolder.totalAmount.setText(""+(itemQuantity*storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName()))+" Tk.");
                 }
                 else if (itemQuantity<=0){
                     Toast.makeText(context,"Quantity can not be zero.",Toast.LENGTH_SHORT).show();
@@ -99,7 +102,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView itemName,itemPrice,itemQuantity,increaseQuantity,decreaseQuantity;
+        TextView itemName,itemPrice,itemQuantity,increaseQuantity,decreaseQuantity,totalAmount;
         Button placeOrderButton,deleteIemButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -108,6 +111,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
             itemQuantity=itemView.findViewById(R.id.textViewItemQuantityXML);
             placeOrderButton=itemView.findViewById(R.id.placeOrderButtonXML);
             deleteIemButton=itemView.findViewById(R.id.deleteItemButtonXML);
+            totalAmount=itemView.findViewById(R.id.totalAmountXML);
             increaseQuantity=itemView.findViewById(R.id.textViewItemQuantityIncreaseXML);
             decreaseQuantity=itemView.findViewById(R.id.textViewItemQuantityDecreaseXML);
         }

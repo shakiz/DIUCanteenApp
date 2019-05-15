@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".Student.Ac.Activities.AddToCartActivity"></activity>
+        <activity
+            android:name=".Student.Ac.Activities.AddToCartActivity"
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".Student.Ac.Activities.FoodCategoryActivity"
             android:theme="@style/AppTheme" />

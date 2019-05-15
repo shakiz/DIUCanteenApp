@@ -24,6 +24,7 @@ public class EveningSnacksFragment extends Fragment {
     private StoreFoodItemData storeFoodItemData;
     private Bundle userEmailBundle;
     private String userEmailStr;
+    private String TAG="EveningSnacksFragment";
 
     public EveningSnacksFragment() {
         // Required empty public constructor
@@ -48,7 +49,12 @@ public class EveningSnacksFragment extends Fragment {
     public void getBundleData(){
         userEmailBundle=getArguments();
         userEmailStr=userEmailBundle.getString("email");
-        Log.v("Email :::",userEmailStr);
+        try{
+            Log.v("Email :::",userEmailStr);
+        }
+        catch (Exception e){
+            Log.v(TAG,e.getMessage());
+        }
     }
 
     private void setAdapter() {

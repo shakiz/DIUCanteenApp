@@ -4,6 +4,7 @@ package app.com.diucanteenapp.Admin.Fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
@@ -32,6 +33,7 @@ import app.com.diucanteenapp.SharedModel.FoodItemModel;
 import app.com.diucanteenapp.R;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 public class AddNewItemFragment extends Fragment {
 
@@ -49,6 +51,8 @@ public class AddNewItemFragment extends Fragment {
     private String adminEmail;
     private StoreFoodItemData storeFoodItemData;
     private FoodItemModel foodItemModel;
+    private SharedPreferences userDetailsSharedPref;
+    private SharedPreferences.Editor userDetailsSharedPredEditor;
 
     public AddNewItemFragment() {
         // Required empty public constructor
@@ -68,7 +72,7 @@ public class AddNewItemFragment extends Fragment {
         //This method will be used to initialize all the attributes with xml
         init(view);
         //This method will be used to get bundle data from the previous activity
-        getBundleData();
+        getUserData();
         //This method will be used to populate arraylist for category
         insertData();
         //This method will be used to set the spinner adapter
@@ -151,9 +155,10 @@ public class AddNewItemFragment extends Fragment {
         return view;
     }
 
-    public void getBundleData(){
-        Bundle bundle=getArguments();
-        adminEmail=bundle.getString("email");
+    public void getUserData(){
+        userDetailsSharedPref=context.getSharedPreferences("user_details",MODE_PRIVATE);
+        userDetailsSharedPredEditor=userDetailsSharedPref.edit();
+        adminEmail=userDetailsSharedPref.getString("email",null);
         Log.v("Email : ","Debug : "+adminEmail);
     }
 

@@ -1,6 +1,7 @@
 package app.com.diucanteenapp.Admin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,17 +25,18 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private String email;
+    private SharedPreferences userDetailsSharedPref;
+    private SharedPreferences.Editor userDetailsSharedPredEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-
-        //This method will be used to get email of the logged on admin
-        getIntentData();
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentScreen,new AddNewItemFragment());
+        fragmentTransaction.commit();
+        //This method will be used to initialize all the attributes with xml
+        init();
         toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -42,6 +44,16 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void init(){
+        userDetailsSharedPref=getSharedPreferences("user_details",MODE_PRIVATE);
+        userDetailsSharedPredEditor=userDetailsSharedPref.edit();
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        email=userDetailsSharedPref.getString("email",null);
+        Log.v("Email : ",email);
     }
 
     @Override
@@ -58,12 +70,6 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         return toggle != null && toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
-
-    public void getIntentData(){
-        Intent intent=getIntent();
-        email=intent.getStringExtra("email");
-        Log.v("Email : ",email);
-    }
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -87,6 +93,8 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
             fragment=new OrderListFragment();
         }
         else if (id == R.id.nav_sign_out){
+            userDetailsSharedPredEditor.clear();
+            userDetailsSharedPredEditor.commit();
             startActivity(new Intent(AdminHomeActivity.this, LoginActivity.class));
         }
         if (fragment!=null){
