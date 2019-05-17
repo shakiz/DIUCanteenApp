@@ -65,7 +65,7 @@ public class AddToCartActivity extends AppCompatActivity {
     }
 
     private void setAdapter() {
-        recyclerViewAdapterForCartItem=new RecyclerViewAdapterForCartItem(cartModelArrayList,getApplicationContext(),userEmailStr);
+        recyclerViewAdapterForCartItem=new RecyclerViewAdapterForCartItem(cartModelArrayList,AddToCartActivity.this,userEmailStr);
         recyclerViewAddToCart.setLayoutManager(layoutManager);
         recyclerViewAddToCart.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAddToCart.setAdapter(recyclerViewAdapterForCartItem);

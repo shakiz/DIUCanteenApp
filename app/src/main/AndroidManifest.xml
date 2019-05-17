@@ -14,7 +14,7 @@
         android:theme="@style/AppThemeNoActionBar">
         <activity
             android:name=".Student.Ac.Activities.AddToCartActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Student.Ac.Activities.FoodCategoryActivity"
             android:theme="@style/AppTheme" />
