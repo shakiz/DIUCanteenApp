@@ -2,6 +2,7 @@ package app.com.diucanteenapp.Student.Ac.Adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,7 @@ import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.SharedDatabaseClasses.DatabaseHelperPlaceOrder;
 import app.com.diucanteenapp.SharedModel.OrderItemModel;
+import app.com.diucanteenapp.Student.Ac.Activities.PaymentAndOrderActivity;
 import app.com.diucanteenapp.Student.Ac.DatabaseHelper.DatabaseHelperSaveCartDetails;
 import app.com.diucanteenapp.Student.Ac.Model.CartModel;
 
@@ -40,7 +42,6 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     private String userEmailStr;
     private OrderItemModel orderItemModel;
     private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
-    private ImageView qrCodeImageView;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -94,22 +95,9 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                     orderItemModel.setItemName(cartModel.getItemName());
                     orderItemModel.setDate(getDate());
                     databaseHelperPlaceOrder.addOrder(orderItemModel);
-                    Toast.makeText(context,"Order Placed",Toast.LENGTH_SHORT).show();
-                    //Here we are telling that after placing the order a qr code will also be generated
-                    //and later it will show on a pop dialog
-                    final Dialog dialog=new Dialog(context);
-                    dialog.setContentView(R.layout.custom_layout_for_qr_code);
-                    //This method helps to initialize the dialog components with xml
-                    initDialogComponents(dialog);
-                    //This method generates QR code and set it to imageView
-                    generateQRCodeAndSetToImageView(cartModel.getItemName(),itemQuantity);
-                    dialog.setTitle("QR code");
-                    try{
-                        dialog.show();
-                    }
-                    catch (Exception e){
-                        Log.v(TAG,e.getMessage());
-                    }
+
+                    context.startActivity(new Intent(context, PaymentAndOrderActivity.class).putExtra("name",cartModel.getItemName())
+                                    .putExtra("quantity",itemQuantity));
                 }
                 else{
                     Toast.makeText(context,"Please check quantity",Toast.LENGTH_SHORT).show();
@@ -123,27 +111,6 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                 databaseHelperSaveCartDetails.deleteRow(cartModel.getItemName());
             }
         });
-    }
-
-    private void generateQRCodeAndSetToImageView(String itemName,int itemQuantity) {
-        MultiFormatWriter multiFormatWriter=new MultiFormatWriter();
-        try{
-            //First we are creating a bitMatrix by the help of multiFormatter
-            //Second we need a barcodeEncoder
-            //Thirs we are encoding a bitMap by the help of barcodeEncoder
-            //And finally setting the bitMap to our imageView for showing the barCode
-            BitMatrix bitMatrix = multiFormatWriter.encode(itemName+itemQuantity, BarcodeFormat.QR_CODE,200,200);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-            qrCodeImageView.setImageBitmap(bitmap);
-        }
-        catch (WriterException e){
-            Log.v(TAG,e.getMessage());
-        }
-    }
-
-    private void initDialogComponents(Dialog dialog) {
-        qrCodeImageView=dialog.findViewById(R.id.qrCodeImageXML);
     }
 
     @Override
