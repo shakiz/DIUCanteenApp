@@ -75,7 +75,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
     /**
      * This method is to update single item record based on its name
      */
-    public void updateIntoDatabase(int ID ,String name,Double price,String category,String itemiconPath) {
+    public void updateIntoDatabase(int ID ,String name,Double price,String category,String itemIconPath) {
         SQLiteDatabase db = this.getWritableDatabase();
         Log.v("UPDATE ITEM : ",""+name);
         // delete user record by name
@@ -84,9 +84,9 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
             cv.put(COLUMN_ITEM_NAME,name);
             cv.put(COLUMN_ITEM_PRICE,price);
             cv.put(COLUMN_ITEM_CATEGORY,category);
-            cv.put(COLUMN_ITEM_ICON,itemiconPath);
+            cv.put(COLUMN_ITEM_ICON,itemIconPath);
 
-            int updateValueConfirmation=db.update(TABLE_FOOD_ITEM,cv,"product_id="+ID,null);
+            int updateValueConfirmation=db.update(TABLE_FOOD_ITEM,cv,"item_id="+ID,null);
             Log.v("Update Value : ",""+updateValueConfirmation);
         }
         catch (Exception e){
@@ -197,6 +197,23 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
         cursor.close();
         sqLiteDatabase.close();
         return itemPrice;
+    }
+
+    //This method will be helpful to get item id based on its name
+    public int getItemID(String itemName){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+ COLUMN_ITEM_ID +" from " + TABLE_FOOD_ITEM + " where "+ COLUMN_ITEM_NAME + "='" + itemName + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query,null);
+        int itemID=0;
+        if (cursor.moveToFirst()){
+            do {
+                itemID=cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_ID));
+            }while (cursor.moveToNext());
+        }
+        Log.v("ID : ",""+itemID);
+        cursor.close();
+        sqLiteDatabase.close();
+        return itemID;
     }
 
 

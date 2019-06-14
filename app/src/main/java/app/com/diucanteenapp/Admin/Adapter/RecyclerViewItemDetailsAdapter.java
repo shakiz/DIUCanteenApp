@@ -1,8 +1,13 @@
 package app.com.diucanteenapp.Admin.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +25,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
+import app.com.diucanteenapp.Admin.Fragments.EditItemFragment;
 import app.com.diucanteenapp.SharedModel.FoodItemModel;
 import app.com.diucanteenapp.R;
 
@@ -67,7 +73,20 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
         viewHolder.itemEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Creating a bunble of data that will pass to the fragment
+                Bundle dataBundle=new Bundle();
+                dataBundle.putString("name",foodItemModel.getItemName());
+                dataBundle.putDouble("price",foodItemModel.getItemPrice());
+                dataBundle.putString("category",foodItemModel.getItemCategory());
+                dataBundle.putString("path",picturePath);
+                //This will take to another ui where admin can update the item details
+                EditItemFragment editItemFragment=new EditItemFragment();
+                //Here we are passing the dataBundle that we create which has the item details
+                editItemFragment.setArguments(dataBundle);
+                FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction =  fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentScreen, editItemFragment);
+                fragmentTransaction.commit();
             }
         });
     }
