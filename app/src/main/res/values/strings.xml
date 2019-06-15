@@ -33,4 +33,6 @@
     <string name="import_image">Import Image</string>
     <string name="nav_sign_out">Sign Out</string>
     <string name="menu_update_item">Update Item</string>
+    <string name="admin_approval">Request Approval</string>
+    <string name="want_to_add_user">Do you want to approve this user?</string>
 </resources>

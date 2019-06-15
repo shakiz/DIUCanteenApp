@@ -156,18 +156,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         else if (userTypeStr.equals("Student")){
-            //If the user type is student then go for the user table and match the email and password
-            if (databaseHelperLoginAndRegistration.checkStudent(emailStr,passwordStr)){
-                Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
-                //Here we are adding the user email for the purpose of session [For student]
-                userDetailsEditor.putString("email",emailStr);
-                userDetailsEditor.putString("type",userTypeStr);
-                userDetailsEditor.commit();
-                //Starting the user activity for the item category
-                startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class));
+            if (databaseHelperLoginAndRegistration.getStudentStatus(emailStr).equals("Not Approve")){
+                Toast.makeText(getApplicationContext(),"User not approved",Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(getApplicationContext(),"Login unsuccessful",Toast.LENGTH_SHORT).show();
+                //If the user type is student then go for the user table and match the email and password
+                if (databaseHelperLoginAndRegistration.checkStudent(emailStr,passwordStr)){
+                    Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+                    //Here we are adding the user email for the purpose of session [For student]
+                    userDetailsEditor.putString("email",emailStr);
+                    userDetailsEditor.putString("type",userTypeStr);
+                    userDetailsEditor.commit();
+                    //Starting the user activity for the item category
+                    startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Login unsuccessful",Toast.LENGTH_SHORT).show();
+                }
             }
         }
         else{

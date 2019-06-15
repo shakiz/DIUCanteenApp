@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import app.com.diucanteenapp.Admin.Fragments.AddNewItemFragment;
 import app.com.diucanteenapp.Admin.Fragments.OrderListFragment;
+import app.com.diucanteenapp.Admin.Fragments.UserRequestApprovalFragment;
 import app.com.diucanteenapp.Admin.Fragments.ViewAllProductFragment;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.SharedActivities.LoginActivity;
@@ -84,13 +85,15 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         if (id == R.id.nav_add_item) {
             fragment=new AddNewItemFragment();
             fragment.setArguments(bundle);
-
         }
         else if (id == R.id.nav_view_item) {
             fragment=new ViewAllProductFragment();
         }
         else if (id == R.id.nav_order_list) {
             fragment=new OrderListFragment();
+        }
+        else if (id==R.id.nav_notification){
+            fragment= new UserRequestApprovalFragment();
         }
         else if (id == R.id.nav_sign_out){
             userDetailsSharedPredEditor.clear();

@@ -51,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                         user.setPassword(passwordStr);
                         user.setMobileNumber(mobileNumberStr);
                         user.setUserType("Student");
+                        user.setUserStatus("Not Approve");
                         //Adding or inserting user details in our database as a new record
                         databaseHelperLoginAndRegistration.addUser(user);
                         databaseHelperLoginAndRegistration.addAdmin(user);

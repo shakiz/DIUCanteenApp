@@ -21,7 +21,7 @@ public class RecyclerViewAdapterForOrderList extends RecyclerView.Adapter<Recycl
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.itemview_for_order_list_recycler_view,viewGroup,false);
         return new ViewHolder(view);
-    }
+}
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {

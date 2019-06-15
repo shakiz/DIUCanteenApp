@@ -6,7 +6,7 @@ public class User {
     private String email;
     private String password;
     private String mobileNumber;
-    private String userType;
+    private String userType,userStatus;
 
     public int getId() {
         return id;
@@ -54,5 +54,13 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 }

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,9 +29,16 @@ public class OrderListFragment extends Fragment {
     private RecyclerViewAdapterForOrderList recyclerViewAdapterForOrderList;
     private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
     private LinearLayout linearLayout;
+    private Context context;
 
     public OrderListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context=context;
     }
 
     @Override
@@ -48,7 +56,7 @@ public class OrderListFragment extends Fragment {
             setAdapter();
         }
         else{
-            Snackbar.make(linearLayout,"No orderes are available",Snackbar.LENGTH_LONG).show();
+            Toast.makeText(context,"No orders to show",Toast.LENGTH_LONG).show();
         }
         return view;
     }

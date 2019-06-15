@@ -7,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import app.com.diucanteenapp.SharedModel.User;
 
 public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "UserManager.db";
@@ -29,6 +31,7 @@ public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
     private static final String COLUMN_USER_PASSWORD = "user_password";
     private static final String COLUMN_USER_MOBILE_NUMBER = "user_mobile";
     private static final String COLUMN_USER_TYPE = "user_type";
+    private static final String COLUMN_USER_STATUS="user_status";
 
     // These are the columns for admin table
     private static final String COLUMN_ADMIN_ID = "admin_id";
@@ -38,7 +41,7 @@ public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
     // create user table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USER_NAME + " TEXT,"
-            + COLUMN_USER_MOBILE_NUMBER + " TEXT," + COLUMN_USER_TYPE + " TEXT,"
+            + COLUMN_USER_MOBILE_NUMBER + " TEXT," + COLUMN_USER_TYPE + " TEXT," + COLUMN_USER_STATUS + " TEXT,"
             + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_PASSWORD + " TEXT" + ")";
 
     // create admin table sql query
@@ -90,6 +93,7 @@ public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
         values.put(COLUMN_USER_PASSWORD, user.getPassword());
         values.put(COLUMN_USER_MOBILE_NUMBER, user.getMobileNumber());
         values.put(COLUMN_USER_TYPE, user.getUserType());
+        values.put(COLUMN_USER_STATUS,user.getUserStatus());
         // Inserting Row
         db.insert(TABLE_USER, null, values);
         db.close();
@@ -168,7 +172,7 @@ public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
 
         // array of columns to fetch
         String[] columns = {
-                COLUMN_USER_ID
+                COLUMN_USER_ID,
         };
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
@@ -200,6 +204,29 @@ public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
         }
 
         return false;
+    }
+
+    /**
+     * This method to get student status whether his status approved or not
+     *
+     * @param email
+     * @return a string
+     */
+    public String getStudentStatus(String email) {
+
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+ COLUMN_USER_STATUS +" from " + TABLE_USER + " where "+ COLUMN_USER_EMAIL + "='" + email + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query,null);
+        String status="";
+        if (cursor.moveToFirst()){
+            do {
+                status=cursor.getString(cursor.getColumnIndex(COLUMN_USER_STATUS));
+            }while (cursor.moveToNext());
+        }
+        Log.v("STATUS : ",""+status);
+        cursor.close();
+        sqLiteDatabase.close();
+        return status;
     }
 
     /**
@@ -245,6 +272,85 @@ public class DatabaseHelperLoginAndRegistration extends SQLiteOpenHelper {
         }
 
         return false;
+    }
+
+    /**
+     * This method will be used to get the users based on the status
+     */
+    public ArrayList<String> getAllUserStatus(String userStatus){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+ COLUMN_USER_EMAIL +" from " + TABLE_USER+ " where "+ COLUMN_USER_STATUS + "='" + userStatus + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query, null);
+        ArrayList<String> userArrayList=new ArrayList<>();
+        if (cursor.moveToFirst()){
+            do {
+                userArrayList.add(cursor.getString(cursor.getColumnIndex(COLUMN_USER_EMAIL)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return userArrayList;
+    }
+
+    /**
+     * This method will be used to get the username on the email
+     */
+    public String getUserName(String email){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+ COLUMN_USER_NAME +" from " + TABLE_USER+ " where "+ COLUMN_USER_EMAIL + "='" + email + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query, null);
+        String userName="";
+        if (cursor.moveToFirst()){
+            do {
+                userName=(cursor.getString(cursor.getColumnIndex(COLUMN_USER_NAME)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return userName;
+    }
+
+    public ArrayList<String> getAllUserName(){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+ COLUMN_USER_NAME +" from " + TABLE_USER;
+        Cursor cursor=sqLiteDatabase.rawQuery(query, null);
+        ArrayList<String > userName=new ArrayList<>();
+        if (cursor.moveToFirst()){
+            do {
+                userName.add(cursor.getString(cursor.getColumnIndex(COLUMN_USER_NAME)));
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+        return userName;
+    }
+
+    //This method will be used to delete a single row from database based on the user email
+    public void deleteUser(String email){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        sqLiteDatabase.execSQL("DELETE FROM " + TABLE_USER + " WHERE " + COLUMN_USER_EMAIL + "='"+email+"'");
+        Log.v("DELETED","USER DELETED : "+email);
+        sqLiteDatabase.close();
+    }
+
+    /**
+     * This method is to update single user status based on its name
+     */
+    public void updateUserStatus(String userName,String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.v("UPDATE ITEM : ",""+userName);
+        // delete user record by name
+        try{
+            ContentValues cv = new ContentValues();
+            cv.put(COLUMN_USER_STATUS,"Approve");
+
+            int updateValueConfirmation=db.update(TABLE_USER,cv,COLUMN_USER_EMAIL+" = '"+userName+"'",null);
+            Log.v("Update Value : ",""+updateValueConfirmation);
+        }
+        catch (Exception e){
+            Log.v("EXCEPTION : ",""+e.getMessage());
+        }
+        db.close();
     }
 
 }
