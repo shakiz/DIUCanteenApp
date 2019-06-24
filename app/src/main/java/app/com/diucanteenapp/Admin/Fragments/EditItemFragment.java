@@ -23,16 +23,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
-import app.com.diucanteenapp.SharedModel.FoodItemModel;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,7 +42,8 @@ public class EditItemFragment extends Fragment {
     private static final int REQUEST_GET_SINGLE_FILE = 1;
     private ArrayList<String> categoryNamesArrayList;
     private Context context;
-    private EditText itemName,itemPrice;
+    private TextView itemName;
+    private EditText itemPrice;
     private Spinner itemCategorySpinner;
     private Button updateButton,importImageButton;
     private String itemNameStr,itemCategoryStr;
@@ -53,7 +51,6 @@ public class EditItemFragment extends Fragment {
     private ImageView thumbnailImage;
     private ArrayAdapter<String> stringArrayAdapterForCategoryItem;
     private String picturePath;
-    private FoodItemModel foodItemModel;
     private StoreFoodItemData storeFoodItemData;
 
     public EditItemFragment() {
@@ -92,6 +89,13 @@ public class EditItemFragment extends Fragment {
             }
         });
 
+        itemName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context,"Can not be changed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //Adding the on clcik listener for update item button
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,8 +123,12 @@ public class EditItemFragment extends Fragment {
                     int itemId=storeFoodItemData.getItemID(itemNameStr);
                     Log.v(TAG,""+itemId);
                     //Now we can update the product based on its ID
-                    storeFoodItemData.updateIntoDatabase(itemId,itemNameStr,itemPriceDouble,itemCategoryStr,picturePath);
-                    Toast.makeText(context,"Item updated",Toast.LENGTH_SHORT).show();
+                    if (storeFoodItemData.updateIntoDatabase(itemId,itemNameStr,itemPriceDouble,itemCategoryStr,picturePath)==true){
+                        Toast.makeText(context,"Item updated",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(context,"Item not  updated",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -177,7 +185,6 @@ public class EditItemFragment extends Fragment {
         thumbnailImage=view.findViewById(R.id.imageThumbnailOfImportedImageXML);
         categoryNamesArrayList=new ArrayList<>();
         storeFoodItemData=new StoreFoodItemData(context);
-        foodItemModel=new FoodItemModel();
     }
 
     private void inputValidation() {

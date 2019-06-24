@@ -75,7 +75,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
     /**
      * This method is to update single item record based on its name
      */
-    public void updateIntoDatabase(int ID ,String name,Double price,String category,String itemIconPath) {
+    public boolean updateIntoDatabase(int ID ,String name,Double price,String category,String itemIconPath) {
         SQLiteDatabase db = this.getWritableDatabase();
         Log.v("UPDATE ITEM : ",""+name);
         // delete user record by name
@@ -88,11 +88,13 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
 
             int updateValueConfirmation=db.update(TABLE_FOOD_ITEM,cv,"item_id="+ID,null);
             Log.v("Update Value : ",""+updateValueConfirmation);
+            db.close();
+            return true;
         }
         catch (Exception e){
             Log.v("EXCEPTION : ",""+e.getMessage());
+            return false;
         }
-        db.close();
     }
     /**
      * This method is to fetch all the product and return the list of product records

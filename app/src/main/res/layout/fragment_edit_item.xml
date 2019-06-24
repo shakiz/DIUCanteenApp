@@ -23,11 +23,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/itemNameXMl"
-                    android:hint="Enter Item Name"
+                    android:hint="Item Name"
+                    android:textSize="18sp"
+                    android:padding="5dp"
                     android:layout_margin="10dp"/>
                 <EditText
                     android:layout_width="match_parent"
