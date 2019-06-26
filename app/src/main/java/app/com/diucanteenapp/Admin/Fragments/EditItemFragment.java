@@ -43,10 +43,11 @@ public class EditItemFragment extends Fragment {
     private ArrayList<String> categoryNamesArrayList;
     private Context context;
     private TextView itemName;
-    private EditText itemPrice;
+    private EditText itemPrice,itemStock;
     private Spinner itemCategorySpinner;
     private Button updateButton,importImageButton;
     private String itemNameStr,itemCategoryStr;
+    private Integer itemStockInt;
     private Double itemPriceDouble;
     private ImageView thumbnailImage;
     private ArrayAdapter<String> stringArrayAdapterForCategoryItem;
@@ -102,6 +103,12 @@ public class EditItemFragment extends Fragment {
             public void onClick(View view) {
                 //Getting the user input into string and double
                 itemNameStr=itemName.getText().toString();
+                if (itemStock.getText().toString().isEmpty()){
+                    Toast.makeText(context,"Please insert stock availability.",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    itemStockInt=Integer.parseInt(itemStock.getText().toString());
+                }
                 try{
                     itemPriceDouble=Double.parseDouble(itemPrice.getText().toString());
                 }
@@ -123,7 +130,7 @@ public class EditItemFragment extends Fragment {
                     int itemId=storeFoodItemData.getItemID(itemNameStr);
                     Log.v(TAG,""+itemId);
                     //Now we can update the product based on its ID
-                    if (storeFoodItemData.updateIntoDatabase(itemId,itemNameStr,itemPriceDouble,itemCategoryStr,picturePath)==true){
+                    if (storeFoodItemData.updateIntoDatabase(itemId,itemNameStr,itemStockInt,itemPriceDouble,itemCategoryStr,picturePath)==true){
                         Toast.makeText(context,"Item updated",Toast.LENGTH_SHORT).show();
                     }
                     else{
@@ -148,15 +155,18 @@ public class EditItemFragment extends Fragment {
     }
 
     private void getBundleDataAndSetToComponents() {
-        //In the following 4 lines of code we are retrieving the data from previous fragment
+        //In the following 5 lines of code we are retrieving the data from previous fragment
         itemNameStr=this.getArguments().getString("name");
         itemCategoryStr=this.getArguments().getString("category");
+        itemStockInt=this.getArguments().getInt("stock");
         itemPriceDouble=this.getArguments().getDouble("price");
         picturePath=this.getArguments().getString("path");
+        Log.v(TAG,itemNameStr+" : "+itemCategoryStr+ " : "+itemStockInt+" : "+itemPriceDouble);
 
         //Now we can set those data into our EditItemFragment components
         itemName.setText(itemNameStr);
         itemPrice.setText(""+itemPriceDouble);
+        itemStock.setText(""+itemStockInt);
         //In order to load an image from path with Picasso
         //First we need to convert that path into file , then we can set it to imageView
         try{
@@ -179,6 +189,7 @@ public class EditItemFragment extends Fragment {
     private void init(View view) {
         itemName=view.findViewById(R.id.itemNameXMl);
         itemPrice=view.findViewById(R.id.itemPriceXML);
+        itemStock=view.findViewById(R.id.itemStockXMl);
         itemCategorySpinner=view.findViewById(R.id.spinnerItemCategoryXML);
         updateButton=view.findViewById(R.id.updateItemButtonXML);
         importImageButton=view.findViewById(R.id.addImageForItemXML);

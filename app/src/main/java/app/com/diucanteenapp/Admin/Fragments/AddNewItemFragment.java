@@ -39,9 +39,10 @@ public class AddNewItemFragment extends Fragment {
 
     private static final int REQUEST_GET_SINGLE_FILE = 1;
     private Context context;
-    private EditText itemName,itemPrice;
+    private EditText itemName,itemPrice,itemStock;
     private String itemNameStr,itemCategoryStr;
     private Double itemPriceDouble;
+    private Integer itemStockInt;
     private ImageView thumbnailImage;
     private Button addItemButton,importImageButton;
     private Spinner itemCategorySpinner;
@@ -67,7 +68,7 @@ public class AddNewItemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_new_item, container, false);
         //This method will be used to initialize all the attributes with xml
         init(view);
@@ -94,6 +95,12 @@ public class AddNewItemFragment extends Fragment {
             public void onClick(View view) {
                 //Getting the user input into string and double
                 itemNameStr=itemName.getText().toString();
+                if (itemStock.getText().toString().isEmpty()){
+                    Toast.makeText(context,"Please insert stock availability.",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    itemStockInt=Integer.parseInt(itemStock.getText().toString());
+                }
                 try{
                     itemPriceDouble=Double.parseDouble(itemPrice.getText().toString());
                 }
@@ -110,20 +117,21 @@ public class AddNewItemFragment extends Fragment {
                     Toast.makeText(context,"Please check category",Toast.LENGTH_LONG).show();
                 }
                 else{
+                    //Setting all the values to model so that we can store data
                     foodItemModel.setItemName(itemNameStr);
                     foodItemModel.setItemPrice(itemPriceDouble);
                     foodItemModel.setItemCategory(itemCategoryStr);
+                    foodItemModel.setItemStockAvailability(itemStockInt);
                     try{
                         foodItemModel.setItemIcon(picturePath);
                     }
                     catch (Exception e){
                         Toast.makeText(context,"Please check all data",Toast.LENGTH_LONG).show();
                     }
-
                     Log.v("Name : ",itemNameStr );
                     Log.v("Price : ",""+itemPriceDouble );
                     Log.v("Category : ",itemCategoryStr );
-//                    Log.v("Picture path : ",picturePath );
+                    Log.v("Stock : ",""+itemStockInt);
 
                     try{
                         if (picturePath.isEmpty()){
@@ -241,6 +249,7 @@ public class AddNewItemFragment extends Fragment {
     private void init(View view) {
         itemName=view.findViewById(R.id.itemNameXMl);
         itemPrice=view.findViewById(R.id.itemPriceXML);
+        itemStock=view.findViewById(R.id.itemStockXMl);
         itemCategorySpinner=view.findViewById(R.id.spinnerItemCategoryXML);
         addItemButton=view.findViewById(R.id.addItemButtonXML);
         importImageButton=view.findViewById(R.id.addImageForItemXML);

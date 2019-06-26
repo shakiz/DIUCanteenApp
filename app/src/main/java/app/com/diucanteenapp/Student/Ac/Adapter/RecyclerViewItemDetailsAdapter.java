@@ -41,6 +41,8 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
         final FoodItemModel foodItemModel=foodItemModelArrayList.get(i);
         viewHolder.itemName.setText(foodItemModel.getItemName());
         viewHolder.itemPrice.setText(""+foodItemModel.getItemPrice()+" Tk.");
+        Log.v("VIEW ADAPTER","STOCK CHECK : "+foodItemModel.getItemStockAvailability());
+        viewHolder.itemStock.setText("Stock : "+foodItemModel.getItemStockAvailability());
         viewHolder.itemCategory.setText(foodItemModel.getItemCategory());
         //Here we are getting the picture path that we stored and then retrieving it and finally decoding it and setting it to imageview
         picturePath=foodItemModel.getItemIcon();
@@ -65,7 +67,9 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
                     CartModel cartModel = new CartModel();
                     cartModel.setEmail(userEmail);
                     cartModel.setItemName(foodItemModel.getItemName());
+                    cartModel.setItemStock(foodItemModel.getItemStockAvailability());
                     databaseHelperSaveCartDetails.addCartItem(cartModel);
+                    Log.v("CHECK FROM ADAPTER: ","STOCK : "+foodItemModel.getItemStockAvailability());
                     Toast.makeText(context,"Item carted",Toast.LENGTH_LONG).show();
                 }
             }
@@ -79,13 +83,14 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         //Here we are initializing all the components that we have for item
-        private TextView itemName,itemPrice,itemCategory;
+        private TextView itemName,itemPrice,itemCategory,itemStock;
         private ImageView itemIcon;
         private Button itemAddTocart;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemName=itemView.findViewById(R.id.foodItemItemNameXML);
             itemPrice=itemView.findViewById(R.id.foodItemPriceXML);
+            itemStock=itemView.findViewById(R.id.foodItemStockXML);
             itemCategory=itemView.findViewById(R.id.foodItemCategoryXML);
             itemIcon=itemView.findViewById(R.id.foodItemIconXML);
             itemAddTocart =itemView.findViewById(R.id.foodItemAddToCartXML);

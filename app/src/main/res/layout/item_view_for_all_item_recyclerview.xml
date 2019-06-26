@@ -65,6 +65,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_margin="3dp"
+                        android:id="@+id/foodItemStockXML"
+                        android:textStyle="bold"
+                        android:text="Stock : 7"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="3dp"
                         android:id="@+id/foodItemCategoryXML"
                         android:textStyle="bold"
                         android:text="Category"/>

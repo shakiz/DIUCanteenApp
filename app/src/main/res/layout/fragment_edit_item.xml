@@ -34,7 +34,14 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/itemStockXMl"
                     android:layout_below="@id/itemNameXMl"
+                    android:hint="Enter Item Stock"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/itemStockXMl"
                     android:layout_margin="10dp"
                     android:inputType="number"
                     android:hint="Enter item price in BDT"

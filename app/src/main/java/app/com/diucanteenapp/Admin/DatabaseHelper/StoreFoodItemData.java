@@ -14,13 +14,13 @@ import app.com.diucanteenapp.SharedModel.FoodItemModel;
 public class StoreFoodItemData extends SQLiteOpenHelper {
 
     //Database version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     //Database name
-    private static final String DATABASE_NAME = "FoodItemData.db";
+    private static final String DATABASE_NAME = "FoodItemDatas.db";
 
     // User table name
-    private static final String TABLE_FOOD_ITEM = "fooditem";
+    private static final String TABLE_FOOD_ITEM = "fooditems";
 
     // These are the columns for fooditem table
     private static final String COLUMN_ITEM_ID = "item_id";
@@ -28,11 +28,12 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
     private static final String COLUMN_ITEM_PRICE = "item_price";
     private static final String COLUMN_ITEM_CATEGORY = "item_category";
     private static final String COLUMN_ITEM_ICON = "item_icon";
+    private static final String COLUMN_ITEM_STOCK = "item_stock";
 
     // create fooditem table sql query
     private String CREATE_ITEM_TABLE = "CREATE TABLE " + TABLE_FOOD_ITEM + "("
             + COLUMN_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ITEM_NAME + " TEXT,"
-            + COLUMN_ITEM_PRICE + " REAL," + COLUMN_ITEM_CATEGORY + " TEXT,"
+            + COLUMN_ITEM_PRICE + " REAL," + COLUMN_ITEM_CATEGORY + " TEXT," + COLUMN_ITEM_STOCK + " REAL,"
             + COLUMN_ITEM_ICON + " TEXT" + ")";
 
     // drop table sql query
@@ -66,6 +67,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
         values.put(COLUMN_ITEM_PRICE, foodItemModel.getItemPrice());
         values.put(COLUMN_ITEM_CATEGORY, foodItemModel.getItemCategory());
         values.put(COLUMN_ITEM_ICON, foodItemModel.getItemIcon());
+        values.put(COLUMN_ITEM_STOCK,foodItemModel.getItemStockAvailability());
 
         // Inserting Row
         db.insert(TABLE_FOOD_ITEM, null, values);
@@ -75,7 +77,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
     /**
      * This method is to update single item record based on its name
      */
-    public boolean updateIntoDatabase(int ID ,String name,Double price,String category,String itemIconPath) {
+    public boolean updateIntoDatabase(int ID ,String name,int itemStockInt,Double price,String category,String itemIconPath) {
         SQLiteDatabase db = this.getWritableDatabase();
         Log.v("UPDATE ITEM : ",""+name);
         // delete user record by name
@@ -83,6 +85,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(COLUMN_ITEM_NAME,name);
             cv.put(COLUMN_ITEM_PRICE,price);
+            cv.put(COLUMN_ITEM_STOCK,itemStockInt);
             cv.put(COLUMN_ITEM_CATEGORY,category);
             cv.put(COLUMN_ITEM_ICON,itemIconPath);
 
@@ -108,7 +111,8 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
                 COLUMN_ITEM_NAME,
                 COLUMN_ITEM_PRICE,
                 COLUMN_ITEM_CATEGORY,
-                COLUMN_ITEM_ICON
+                COLUMN_ITEM_ICON,
+                COLUMN_ITEM_STOCK
         };
         // sorting orders
         String sortOrder =
@@ -137,12 +141,14 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
                 Log.v("Name : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)));
                 Log.v("Price : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_PRICE)));
                 Log.v("Category : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_CATEGORY)));
+                Log.v("Stock : ",""+cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_STOCK)));
                 Log.v("Path :  : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_ICON)));
                 Log.v("__________","____________________________________");
 
                 foodItemModel.setItemName(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)));
                 foodItemModel.setItemPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_ITEM_PRICE)));
                 foodItemModel.setItemCategory((cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_CATEGORY))));
+                foodItemModel.setItemStockAvailability((cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_STOCK))));
                 foodItemModel.setItemIcon(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_ICON)));
 
                 // Adding food item record to list
@@ -171,6 +177,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
                 foodItemModel.setItemName(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)));
                 foodItemModel.setItemPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_ITEM_PRICE)));
                 foodItemModel.setItemCategory(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_CATEGORY)));
+                foodItemModel.setItemStockAvailability(cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_STOCK)));
                 foodItemModel.setItemIcon(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_ICON)));
                 foodItemModels.add(foodItemModel);
             }while (cursor.moveToNext());

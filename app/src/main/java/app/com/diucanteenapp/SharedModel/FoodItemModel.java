@@ -5,6 +5,7 @@ public class FoodItemModel {
     private String itemName,itemCategory;
     private double itemPrice;
     private String itemIcon;
+    private int itemStockAvailability;
 
     public String getItemName() {
         return itemName;
@@ -36,5 +37,13 @@ public class FoodItemModel {
 
     public void setItemIcon(String itemIcon) {
         this.itemIcon = itemIcon;
+    }
+
+    public int getItemStockAvailability() {
+        return itemStockAvailability;
+    }
+
+    public void setItemStockAvailability(int itemStockAvailability) {
+        this.itemStockAvailability = itemStockAvailability;
     }
 }
