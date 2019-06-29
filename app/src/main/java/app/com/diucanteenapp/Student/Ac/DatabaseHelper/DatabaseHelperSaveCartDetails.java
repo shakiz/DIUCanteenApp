@@ -21,12 +21,11 @@ public class DatabaseHelperSaveCartDetails extends SQLiteOpenHelper {
     // These are the columns for user cart details table
     private static final String COLUMN_CART_ID = "cart_id";
     private static final String COLUMN_USER_EMAIL = "cart_user_email";
-    private static final String COLUMN_ITEM_STOCK = "cart_item_stock";
     private static final String COLUMN_ITEM_NAME = "cart_item_name";
     // create cart details details table sql query
     private String CREATE_CART_DETAILS_TABLE = "CREATE TABLE " + TABLE_USER_CART_DETAILS + "("
             + COLUMN_CART_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ITEM_NAME + " TEXT,"
-            + COLUMN_ITEM_STOCK + " INTEGER,"+ COLUMN_USER_EMAIL + " TEXT" + ")";
+            + COLUMN_USER_EMAIL + " TEXT" + ")";
 
     // drop table sql query
     private String DROP_CART_DETAILS_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER_CART_DETAILS;
@@ -60,7 +59,6 @@ public class DatabaseHelperSaveCartDetails extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ITEM_NAME, cartModel.getItemName());
         values.put(COLUMN_USER_EMAIL, cartModel.getEmail());
-        values.put(COLUMN_ITEM_STOCK,cartModel.getItemStock());
         // Inserting Row
         db.insert(TABLE_USER_CART_DETAILS, null, values);
         db.close();
@@ -119,7 +117,6 @@ public class DatabaseHelperSaveCartDetails extends SQLiteOpenHelper {
         String[] columns = {
                 COLUMN_CART_ID,
                 COLUMN_ITEM_NAME,
-                COLUMN_ITEM_STOCK
         };
         // sorting orders
         String sortOrder =
@@ -143,7 +140,6 @@ public class DatabaseHelperSaveCartDetails extends SQLiteOpenHelper {
             do {
                 CartModel cartModel = new CartModel();
                 cartModel.setItemName(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)));
-                cartModel.setItemStock(cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_STOCK)));
                 // Adding food item record to list
                 cartFoodItemList.add(cartModel);
             } while (cursor.moveToNext());

@@ -10,9 +10,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="DBBL"
         android:gravity="center"
-        android:background="#323232"
+        android:elevation="10dp"
+        android:background="@drawable/dbbl"
         android:padding="10dp"
         android:layout_margin="10dp"
         android:textColor="@android:color/white"/>
@@ -20,9 +20,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="BKash"
+        android:elevation="10dp"
         android:gravity="center"
-        android:background="#323232"
+        android:background="@drawable/bkash"
         android:padding="10dp"
         android:layout_margin="10dp"
         android:textColor="@android:color/white"/>
@@ -30,9 +30,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="UCash"
+        android:elevation="10dp"
         android:gravity="center"
-        android:background="#323232"
+        android:background="@drawable/ukash"
         android:padding="10dp"
         android:layout_margin="10dp"
         android:textColor="@android:color/white"/>
@@ -40,9 +40,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="TCash"
         android:gravity="center"
-        android:background="#323232"
+        android:elevation="10dp"
+        android:background="@drawable/tcash"
         android:padding="10dp"
         android:layout_margin="10dp"
         android:textColor="@android:color/white"/>

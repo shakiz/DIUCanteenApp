@@ -19,6 +19,8 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
     //Database name
     private static final String DATABASE_NAME = "FoodItemDatas.db";
 
+    private String TAG="StoreFoodItemData";
+
     // User table name
     private static final String TABLE_FOOD_ITEM = "fooditems";
 
@@ -79,7 +81,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
      */
     public boolean updateIntoDatabase(int ID ,String name,int itemStockInt,Double price,String category,String itemIconPath) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.v("UPDATE ITEM : ",""+name);
+        Log.v(TAG,"UPDATE ITEM : "+name);
         // delete user record by name
         try{
             ContentValues cv = new ContentValues();
@@ -90,12 +92,28 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
             cv.put(COLUMN_ITEM_ICON,itemIconPath);
 
             int updateValueConfirmation=db.update(TABLE_FOOD_ITEM,cv,"item_id="+ID,null);
-            Log.v("Update Value : ",""+updateValueConfirmation);
+            Log.v(TAG,"Update Value : "+updateValueConfirmation);
             db.close();
             return true;
         }
         catch (Exception e){
             Log.v("EXCEPTION : ",""+e.getMessage());
+            return false;
+        }
+    }
+    public boolean updateItemStock(String name,int stock){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        Log.v(TAG,"ITEMTO UPDATE : "+name);
+        try{
+            ContentValues contentValues=new ContentValues();
+            contentValues.put(COLUMN_ITEM_STOCK,stock);
+            sqLiteDatabase.update(TABLE_FOOD_ITEM, contentValues, "item_name = ?", new String[]{COLUMN_ITEM_STOCK});
+            Log.v(TAG,"NEW STOCK : "+stock);
+            sqLiteDatabase.close();
+            return true;
+        }
+        catch (Exception e){
+            Log.v(TAG,"EXXX"+e.getMessage());
             return false;
         }
     }
@@ -135,7 +153,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 FoodItemModel foodItemModel = new FoodItemModel();
-                Log.v("___________","____________________________");
+                Log.v(TAG,"____________________________");
                 Log.v("All saved :","Single product details");
                 Log.v("ID : ",""+cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_ID)));
                 Log.v("Name : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)));
@@ -143,7 +161,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
                 Log.v("Category : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_CATEGORY)));
                 Log.v("Stock : ",""+cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_STOCK)));
                 Log.v("Path :  : ",""+cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_ICON)));
-                Log.v("__________","____________________________________");
+                Log.v(TAG,"____________________________________");
 
                 foodItemModel.setItemName(cursor.getString(cursor.getColumnIndex(COLUMN_ITEM_NAME)));
                 foodItemModel.setItemPrice(cursor.getDouble(cursor.getColumnIndex(COLUMN_ITEM_PRICE)));
@@ -196,16 +214,35 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
         String query = "select "+ COLUMN_ITEM_PRICE +" from " + TABLE_FOOD_ITEM + " where "+ COLUMN_ITEM_NAME + "='" + itemName + "'";
         Cursor cursor=sqLiteDatabase.rawQuery(query, null);
         double itemPrice=0;
-        //Log.v("Date : ",""+date);
         if (cursor.moveToFirst()){
             do {
                 itemPrice=cursor.getDouble(cursor.getColumnIndex(COLUMN_ITEM_PRICE));
             }while (cursor.moveToNext());
         }
-        Log.v("Price : ",""+itemPrice);
+        Log.v(TAG,"Price : "+itemPrice);
         cursor.close();
         sqLiteDatabase.close();
         return itemPrice;
+    }
+
+    /**
+     * This method will be used to get the item lists based on their category
+     * Like if the category is Drinks then we get the list of food item which belongs to Drinks category
+     */
+    public int getItemStockBasedOnName(String itemName){
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        String query = "select "+ COLUMN_ITEM_STOCK +" from " + TABLE_FOOD_ITEM + " where "+ COLUMN_ITEM_NAME + "='" + itemName + "'";
+        Cursor cursor=sqLiteDatabase.rawQuery(query, null);
+        int stock=0;
+        if (cursor.moveToFirst()){
+            do {
+                stock=cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_STOCK));
+            }while (cursor.moveToNext());
+        }
+        Log.v(TAG,"Stock : "+stock);
+        cursor.close();
+        sqLiteDatabase.close();
+        return stock;
     }
 
     //This method will be helpful to get item id based on its name
@@ -219,7 +256,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
                 itemID=cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM_ID));
             }while (cursor.moveToNext());
         }
-        Log.v("ID : ",""+itemID);
+        Log.v(TAG,"ID : "+itemID);
         cursor.close();
         sqLiteDatabase.close();
         return itemID;
@@ -230,7 +267,7 @@ public class StoreFoodItemData extends SQLiteOpenHelper {
     public void deleteRow(String itemName){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         sqLiteDatabase.execSQL("DELETE FROM " + TABLE_FOOD_ITEM + " WHERE " + COLUMN_ITEM_NAME + "='"+itemName+"'");
-        Log.v("DELETED","ITEM DELETED : "+itemName);
+        Log.v(TAG,"ITEM DELETED : "+itemName);
         sqLiteDatabase.close();
     }
 }

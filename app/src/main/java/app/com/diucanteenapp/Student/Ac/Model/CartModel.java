@@ -2,7 +2,6 @@ package app.com.diucanteenapp.Student.Ac.Model;
 
 public class CartModel {
     private String itemName;
-    private int itemStock;
     private String email;
 
     public String getItemName() {
@@ -21,11 +20,4 @@ public class CartModel {
         this.email = email;
     }
 
-    public int getItemStock() {
-        return itemStock;
-    }
-
-    public void setItemStock(int itemStock) {
-        this.itemStock = itemStock;
-    }
 }

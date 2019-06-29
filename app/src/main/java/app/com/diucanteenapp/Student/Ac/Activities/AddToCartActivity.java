@@ -26,6 +26,7 @@ public class AddToCartActivity extends AppCompatActivity {
     private ArrayList<CartModel> cartModelArrayList;
     private RecyclerViewAdapterForCartItem recyclerViewAdapterForCartItem;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private String TAG="ADDTOCARTACTIVITY";
     private String userEmailStr;
     private LinearLayout linearLayout;
 
@@ -61,7 +62,7 @@ public class AddToCartActivity extends AppCompatActivity {
 
     private void getIntentDataEmail() {
         userEmailStr= getIntent().getStringExtra("email");
-        Log.v("EMAIL :> ",userEmailStr);
+        Log.v(TAG,"Email : "+userEmailStr);
     }
 
     private void setAdapter() {

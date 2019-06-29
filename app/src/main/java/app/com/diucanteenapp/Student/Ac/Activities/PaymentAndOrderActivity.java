@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -15,6 +16,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
 
 public class PaymentAndOrderActivity extends AppCompatActivity {
@@ -23,7 +25,8 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     private ImageView qrCodeImageView;
     private Button orderAfterPayment;
     private String itemName;
-    private Integer itemQuantity;
+    private Integer itemQuantity,stock;
+    private StoreFoodItemData storeFoodItemData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,12 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
                 catch (Exception e){
                     Log.v(TAG,e.getMessage());
                 }
+                if (storeFoodItemData.updateItemStock(itemName,(stock-itemQuantity))==true){
+                    Toast.makeText(getApplicationContext(),"Updated stock",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Update failed",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -59,7 +68,8 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     private void getIntentData() {
         itemName=getIntent().getStringExtra("name");
         itemQuantity=getIntent().getIntExtra("quantity",0);
-        Log.v(TAG,""+itemName+" "+itemQuantity);
+        stock=getIntent().getIntExtra("stock",0);
+        Log.v(TAG,""+itemName+" : "+itemQuantity + " : "+stock);
     }
 
     private void initDialogComponents(Dialog dialog) {
@@ -68,6 +78,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
 
     public void init(){
         orderAfterPayment=findViewById(R.id.orderButtonXMLPayment);
+        storeFoodItemData=new StoreFoodItemData(getApplicationContext());
     }
 
     private void generateQRCodeAndSetToImageView(String itemName,int itemQuantity) {

@@ -67,7 +67,6 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
                     CartModel cartModel = new CartModel();
                     cartModel.setEmail(userEmail);
                     cartModel.setItemName(foodItemModel.getItemName());
-                    cartModel.setItemStock(foodItemModel.getItemStockAvailability());
                     databaseHelperSaveCartDetails.addCartItem(cartModel);
                     Log.v("CHECK FROM ADAPTER: ","STOCK : "+foodItemModel.getItemStockAvailability());
                     Toast.makeText(context,"Item carted",Toast.LENGTH_LONG).show();

@@ -1,9 +1,7 @@
 package app.com.diucanteenapp.Student.Ac.Adapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +28,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     private StoreFoodItemData storeFoodItemData;
     private DatabaseHelperSaveCartDetails databaseHelperSaveCartDetails;
     private Context context;
+    private double price=0;
     private int itemQuantity=0,itemStock=0;
     private String userEmailStr;
     private OrderItemModel orderItemModel;
@@ -56,18 +53,19 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         final CartModel cartModel=cartModelArrayList.get(i);
-        itemStock=cartModel.getItemStock();
+        itemStock=storeFoodItemData.getItemStockBasedOnName(cartModel.getItemName());
+        price=storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName());
         viewHolder.itemName.setText(cartModel.getItemName());
-        viewHolder.itemPrice.setText(storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName())+""+" Tk.");
-        Log.v("CART VIEW ","STOCK : > "+cartModel.getItemStock());
-        viewHolder.itemStock.setText("Stock : "+cartModel.getItemStock());
+        viewHolder.itemPrice.setText(price+""+" Tk.");
+        Log.v(TAG,"STOCK : > "+itemStock);
+        viewHolder.itemStock.setText(""+itemStock);
         viewHolder.increaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (itemQuantity<itemStock){
                     itemQuantity=++itemQuantity;
                     viewHolder.itemQuantity.setText(""+itemQuantity);
-                    viewHolder.totalAmount.setText(""+(itemQuantity*storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName()))+" Tk.");
+                    viewHolder.totalAmount.setText(""+(itemQuantity*price)+" Tk.");
                 }
                 else{
                     Toast.makeText(context,"Stock is empty",Toast.LENGTH_SHORT).show();
@@ -99,7 +97,8 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                     databaseHelperPlaceOrder.addOrder(orderItemModel);
 
                     context.startActivity(new Intent(context, PaymentAndOrderActivity.class).putExtra("name",cartModel.getItemName())
-                                    .putExtra("quantity",itemQuantity));
+                                    .putExtra("quantity",itemQuantity)
+                                    .putExtra("stock",itemStock));
                 }
                 else{
                     Toast.makeText(context,"Please check quantity",Toast.LENGTH_SHORT).show();
