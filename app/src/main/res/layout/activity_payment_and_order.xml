@@ -57,4 +57,16 @@
         android:textColor="@android:color/white"
         android:id="@+id/orderButtonXMLPayment"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30sp"
+        android:text="@string/timer"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"/>
+
 </LinearLayout>

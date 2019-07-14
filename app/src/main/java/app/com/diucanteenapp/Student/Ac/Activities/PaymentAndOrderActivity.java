@@ -2,12 +2,18 @@ package app.com.diucanteenapp.Student.Ac.Activities;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -16,6 +22,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.util.concurrent.TimeUnit;
+
 import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
 
@@ -23,10 +31,32 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
 
     private String TAG = "PaymentOrderActivity";
     private ImageView qrCodeImageView;
+    private TextView timer,time;
     private Button orderAfterPayment;
     private String itemName;
     private Integer itemQuantity,stock;
     private StoreFoodItemData storeFoodItemData;
+    private CountDownTimer countDownTimer;
+    private  long startTime = 0;
+
+    //runs without a timer by reposting this handler at the end of the runnable
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+
+            time.setText("Your food will be delivered : "+String.format("%d:%02d", minutes, seconds));
+
+            timerHandler.postDelayed(this, 500);
+        }
+    };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +72,10 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Here we are telling that after placing the order a qr code will also be generated
                 //and later it will show on a pop dialog
+                //this  posts a message to the main thread from our timertask
+                //and updates the textfield
+                startTime = System.currentTimeMillis();
+                timerHandler.postDelayed(timerRunnable, 0);
                 final Dialog dialog=new Dialog(PaymentAndOrderActivity.this);
                 dialog.setContentView(R.layout.custom_layout_for_qr_code);
                 //This method helps to initialize the dialog components with xml
@@ -65,6 +99,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         });
     }
 
+
     private void getIntentData() {
         itemName=getIntent().getStringExtra("name");
         itemQuantity=getIntent().getIntExtra("quantity",0);
@@ -79,6 +114,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     public void init(){
         orderAfterPayment=findViewById(R.id.orderButtonXMLPayment);
         storeFoodItemData=new StoreFoodItemData(getApplicationContext());
+        time=findViewById(R.id.time);
     }
 
     private void generateQRCodeAndSetToImageView(String itemName,int itemQuantity) {
@@ -97,4 +133,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
             Log.v(TAG,e.getMessage());
         }
     }
+
+
+
 }

@@ -25,4 +25,5 @@
         android:src="@drawable/ic_sign_out"
         android:id="@+id/qrCodeImageXML"/>
 
+
 </LinearLayout>
