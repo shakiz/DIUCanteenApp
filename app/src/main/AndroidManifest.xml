@@ -14,23 +14,37 @@
         android:theme="@style/AppThemeNoActionBar">
         <activity
             android:name=".Student.Ac.Activities.PaymentAndOrderActivity"
-            android:theme="@style/AppTheme"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing"
+            android:label="@string/payment"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Student.Ac.Activities.AddToCartActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Student.Ac.Activities.FoodCategoryActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/food_type"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Admin.AdminHomeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SharedActivities.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/register"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppThemeNoActionBar" />
+
         <activity
             android:name=".SharedActivities.LoginActivity"
-            android:theme="@style/AppThemeNoActionBar">
+            android:theme="@style/AppThemeNoActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

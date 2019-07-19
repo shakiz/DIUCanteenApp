@@ -41,4 +41,9 @@
     <string name="stop_timer">Stop Timer</string>
     <string name="reset_timer">Reset Timer</string>
     <string name="timer">00:00:00</string>
+    <string name="cooking">Your food is cooking.</string>
+    <string name="account_number">Enter Account Number</string>
+    <string name="payment">Payment</string>
+    <string name="food_type">Food Category</string>
+    <string name="select_payment">Please Select Payment Method</string>
 </resources>
