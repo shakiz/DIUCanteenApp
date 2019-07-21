@@ -29,7 +29,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     private DatabaseHelperSaveCartDetails databaseHelperSaveCartDetails;
     private Context context;
     private double price=0;
-    private int itemQuantity=0,itemStock=0;
+    private int itemQuantity=0,itemStock=0,totalAmount=0;
     private String userEmailStr;
     private OrderItemModel orderItemModel;
     private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
@@ -65,7 +65,8 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                 if (itemQuantity<itemStock){
                     itemQuantity=++itemQuantity;
                     viewHolder.itemQuantity.setText(""+itemQuantity);
-                    viewHolder.totalAmount.setText(""+(itemQuantity*price)+" Tk.");
+                    totalAmount= (int) (itemQuantity*price);
+                    viewHolder.totalAmount.setText(""+totalAmount+" Tk.");
                 }
                 else{
                     Toast.makeText(context,"Stock is empty",Toast.LENGTH_SHORT).show();
@@ -98,7 +99,8 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
 
                     context.startActivity(new Intent(context, PaymentAndOrderActivity.class).putExtra("name",cartModel.getItemName())
                                     .putExtra("quantity",itemQuantity)
-                                    .putExtra("stock",itemStock));
+                                    .putExtra("stock",itemStock)
+                                    .putExtra("amount",totalAmount));
                 }
                 else{
                     Toast.makeText(context,"Please check quantity",Toast.LENGTH_SHORT).show();

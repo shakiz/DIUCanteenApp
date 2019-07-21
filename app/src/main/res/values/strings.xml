@@ -43,7 +43,9 @@
     <string name="timer">00:00:00</string>
     <string name="cooking">Your food is cooking.</string>
     <string name="account_number">Enter Account Number</string>
-    <string name="payment">Payment</string>
-    <string name="food_type">Food Category</string>
+    <string name="payment">Payment and order</string>
+    <string name="food_type">Food Categories</string>
     <string name="select_payment">Please Select Payment Method</string>
+    <string name="add_to_cart">Cart Details</string>
+    <string name="total">Total Amount</string>
 </resources>

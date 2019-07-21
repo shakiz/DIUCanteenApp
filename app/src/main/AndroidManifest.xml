@@ -20,6 +20,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Student.Ac.Activities.AddToCartActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            android:label="@string/add_to_cart"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Student.Ac.Activities.FoodCategoryActivity"

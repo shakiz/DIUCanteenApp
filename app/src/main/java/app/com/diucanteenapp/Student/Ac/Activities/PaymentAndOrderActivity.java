@@ -39,10 +39,10 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
 
     private String TAG = "PaymentOrderActivity";
     private ImageView qrCodeImageView;
-    private TextView timer,time;
+    private TextView timer,time,totalAmountTXT;
     private Button orderAfterPayment;
     private String itemName;
-    private Integer itemQuantity,stock;
+    private Integer itemQuantity,stock,totalAmount=0;
     private StoreFoodItemData storeFoodItemData;
     private  long startTime = 0;
     private ArrayList<String> paymentMethodsArrayList;
@@ -75,6 +75,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         init();
         //This method will be used to get data from previous activity or fragment
         getIntentData();
+        totalAmountTXT.setText("Total amount = "+totalAmount);
         setSpinnerAdapter();
         //Setting the on click listener for order button which will pop up a QR code for the order
         orderAfterPayment.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +120,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     }
 
     private void setSpinnerData(){
+        paymentMethodsArrayList.add("Select payment method");
         paymentMethodsArrayList.add("Rocket");
         paymentMethodsArrayList.add("bKash");
         paymentMethodsArrayList.add("TCash");
@@ -129,7 +131,8 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         itemName=getIntent().getStringExtra("name");
         itemQuantity=getIntent().getIntExtra("quantity",0);
         stock=getIntent().getIntExtra("stock",0);
-        Log.v(TAG,""+itemName+" : "+itemQuantity + " : "+stock);
+        totalAmount=getIntent().getIntExtra("amount",0);
+        Log.v(TAG,""+itemName+" : "+itemQuantity + " : "+stock + " : "+totalAmount);
     }
 
     private void initDialogComponents(Dialog dialog) {
@@ -140,6 +143,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         orderAfterPayment=findViewById(R.id.orderButtonXMLPayment);
         storeFoodItemData=new StoreFoodItemData(getApplicationContext());
         paymentMethodSpinner = findViewById(R.id.paymentMethodsSpinner);
+        totalAmountTXT = findViewById(R.id.TotalAmount);
         paymentMethodsArrayList = new ArrayList<>();
         time=findViewById(R.id.time);
     }
