@@ -6,130 +6,160 @@
     android:elevation="5dp"
     android:layout_margin="5dp"
     android:background="@drawable/layout_shadow"
+    android:weightSum="3.3"
     android:orientation="horizontal">
 
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
+    <CheckBox
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".3"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_marginLeft="4dp"
+        android:id="@+id/checkItemOrder"/>
 
-      <LinearLayout
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:weightSum="3.5"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rectangle_2"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical">
+
+        <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="0dp"
+          android:layout_weight="1"
           android:gravity="center"
-          android:weightSum="3"
+          android:weightSum="2.5"
           android:orientation="horizontal">
 
           <TextView
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:text="Item name"
+              android:layout_gravity="center"
+              android:gravity="center"
               android:padding="5dp"
               android:layout_weight="1"
-              android:layout_margin="5dp"
+              android:layout_marginRight="4dp"
               android:textSize="16sp"
               android:id="@+id/textViewItemNameXML"/>
           <TextView
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:gravity="center"
               android:text="Price"
               android:padding="5dp"
-              android:layout_weight="1"
-              android:layout_margin="5dp"
+              android:layout_marginRight="4dp"
+              android:layout_weight=".75"
               android:textSize="16sp"
               android:id="@+id/textViewItemPriceXML"/>
 
           <TextView
-              android:layout_width="wrap_content"
+              android:layout_width="0dp"
               android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:gravity="center"
               android:text="Stock"
-              android:layout_weight="1"
+              android:layout_marginRight="4dp"
+              android:layout_weight=".75"
               android:padding="5dp"
-              android:layout_margin="5dp"
               android:textSize="16sp"
               android:id="@+id/textViewItemStockXML"/>
 
       </LinearLayout>
 
-       <LinearLayout
+        <LinearLayout
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+           android:layout_height="0dp"
+           android:layout_weight="1.5"
            android:gravity="center"
+           android:layout_gravity="center"
            android:orientation="horizontal">
 
            <TextView
-               android:layout_width="wrap_content"
+               android:layout_width="40dp"
                android:layout_height="wrap_content"
                android:text="+"
-               android:padding="10dp"
+               android:layout_gravity="center"
+               android:padding="4dp"
+               android:gravity="center"
                android:background="@drawable/buttons_shape"
                android:textColor="@android:color/white"
-               android:layout_margin="5dp"
+               android:layout_margin="4dp"
                android:textSize="18sp"
                android:id="@+id/textViewItemQuantityIncreaseXML"/>
            <TextView
-               android:layout_width="wrap_content"
+               android:layout_width="40dp"
                android:layout_height="wrap_content"
                android:textSize="18sp"
+               android:paddingRight="4dp"
+               android:layout_marginLeft="4dp"
+               android:layout_marginRight="4dp"
                android:text="1"
-               android:padding="5dp"
-               android:layout_margin="5dp"
+               android:layout_gravity="center"
+               android:gravity="center"
+               android:layout_margin="4dp"
                android:id="@+id/textViewItemQuantityXML"/>
            <TextView
-               android:layout_width="wrap_content"
+               android:layout_width="40dp"
                android:layout_height="wrap_content"
                android:text="-"
-               android:padding="10dp"
+               android:padding="4dp"
+               android:layout_gravity="center"
+               android:gravity="center"
                android:background="@drawable/buttons_shape"
                android:textColor="@android:color/white"
-               android:layout_margin="5dp"
+               android:layout_margin="4dp"
                android:textSize="18sp"
                android:id="@+id/textViewItemQuantityDecreaseXML"/>
 
        </LinearLayout>
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
-
-           <TextView
+        <TextView
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="0dp"
+               android:layout_weight="1"
                android:text="Total"
                android:layout_marginTop="5dp"
                android:textSize="18sp"
                android:gravity="center"
                android:id="@+id/totalAmountXML"/>
 
-       </LinearLayout>
 
-   </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_weight="1"
         android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <Button
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:gravity="center"
-            android:text="Order"
-            android:layout_marginTop="10dp"
+            android:text="Add"
+            android:layout_marginTop="4dp"
             android:textAllCaps="false"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
             android:id="@+id/placeOrderButtonXML"/>
 
         <Button
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="Delete"
-            android:layout_margin="10dp"
+            android:layout_margin="4dp"
             android:textAllCaps="false"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
