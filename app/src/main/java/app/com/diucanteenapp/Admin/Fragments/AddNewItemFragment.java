@@ -40,7 +40,7 @@ public class AddNewItemFragment extends Fragment {
     private static final int REQUEST_GET_SINGLE_FILE = 1;
     private Context context;
     private EditText itemName,itemPrice,itemStock;
-    private String itemNameStr,itemCategoryStr;
+    private String itemNameStr,itemCategoryStr,TAG = "AddNewItemFragment";
     private Double itemPriceDouble;
     private Integer itemStockInt;
     private ImageView thumbnailImage;
@@ -128,10 +128,10 @@ public class AddNewItemFragment extends Fragment {
                     catch (Exception e){
                         Toast.makeText(context,"Please check all data",Toast.LENGTH_LONG).show();
                     }
-                    Log.v("Name : ",itemNameStr );
-                    Log.v("Price : ",""+itemPriceDouble );
-                    Log.v("Category : ",itemCategoryStr );
-                    Log.v("Stock : ",""+itemStockInt);
+                    Log.v(TAG +"= Name : ",itemNameStr );
+                    Log.v(TAG +"Price : ",""+itemPriceDouble );
+                    Log.v(TAG +"Category : ",itemCategoryStr );
+                    Log.v(TAG +"Stock : ",""+itemStockInt);
 
                     try{
                         if (picturePath.isEmpty()){
@@ -145,6 +145,12 @@ public class AddNewItemFragment extends Fragment {
                     catch (Exception e){
                         Toast.makeText(context,"Please import an image.",Toast.LENGTH_LONG).show();
                     }
+                    //After adding an item all the fields will be empty
+                    itemStock.setText("");
+                    itemName.setText("");
+                    itemPrice.setText("");
+                    picturePath = "";
+                    thumbnailImage.setImageResource(R.drawable.dish);
                 }
             }
         });
@@ -257,6 +263,9 @@ public class AddNewItemFragment extends Fragment {
         categoryNamesArrayList=new ArrayList<>();
         storeFoodItemData=new StoreFoodItemData(context);
         foodItemModel=new FoodItemModel();
+
+        //Set default image icon
+        thumbnailImage.setImageResource(R.drawable.dish);
     }
 
 }
