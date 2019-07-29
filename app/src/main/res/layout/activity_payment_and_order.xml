@@ -24,7 +24,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:padding="10dp"
@@ -40,7 +40,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:hint="@string/account_number"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
@@ -53,7 +53,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:text="@string/total"
             android:textSize="16sp"
             android:padding="10dp"

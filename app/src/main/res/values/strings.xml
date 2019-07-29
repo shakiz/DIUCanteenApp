@@ -48,4 +48,7 @@
     <string name="select_payment">Please Select Payment Method</string>
     <string name="add_to_cart">Cart Details</string>
     <string name="total">Total Amount</string>
+    <string name="item_name_hint">Enter item name</string>
+    <string name="item_stock_hint">Enter item stock</string>
+    <string name="item_price_hint">Enter item price in BDT</string>
 </resources>
