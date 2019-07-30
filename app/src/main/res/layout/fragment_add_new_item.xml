@@ -31,7 +31,6 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/editext_back"
-                    android:focusable="false"
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
                     android:maxLines="1"
@@ -51,7 +50,6 @@
                     android:layout_marginTop="6dp"
                     android:layout_below="@id/itemNameXMl"
                     android:background="@drawable/editext_back"
-                    android:focusable="false"
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
                     android:maxLines="1"
@@ -70,7 +68,6 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="6dp"
                     android:background="@drawable/editext_back"
-                    android:focusable="false"
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
                     android:maxLines="1"
@@ -104,8 +101,9 @@
                 </LinearLayout>
 
                 <Button
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:layout_below="@id/spinnerLayout"
                     android:id="@+id/addImageForItemXML"
                     android:layout_margin="10dp"
@@ -125,8 +123,9 @@
                     android:layout_centerInParent="true"
                     android:layout_below="@id/addImageForItemXML"/>
                 <Button
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:layout_below="@id/imageThumbnailOfImportedImageXML"
                     android:padding="10dp"
                     android:layout_margin="10dp"
