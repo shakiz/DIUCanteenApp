@@ -95,6 +95,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                     orderItemModel.setQuantity(itemQuantity);
                     orderItemModel.setItemName(cartModel.getItemName());
                     orderItemModel.setDate(getDate());
+                    orderItemModel.setAmount(totalAmount);
                     databaseHelperPlaceOrder.addOrder(orderItemModel);
 
                     context.startActivity(new Intent(context, PaymentAndOrderActivity.class).putExtra("name",cartModel.getItemName())

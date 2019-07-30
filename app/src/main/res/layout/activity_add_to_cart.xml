@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="3"
     android:id="@+id/linearLayoutCartXML"
     tools:context=".Student.Ac.Activities.AddToCartActivity">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
         android:text="Your carted item"
         android:gravity="center"
         android:padding="5dp"
@@ -20,7 +22,8 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
         android:id="@+id/swipeRefreshLayout">
 
         <android.support.v7.widget.RecyclerView
@@ -31,5 +34,19 @@
             android:id="@+id/cartRecyclerViewXML"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_weight=".25"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:background="@drawable/buttons_shape"
+        android:text="@string/order"
+        android:textAllCaps="false"
+        android:textColor="@color/md_white_1000"
+        android:id="@+id/OrderAllItem"/>
 
 </LinearLayout>

@@ -12,10 +12,10 @@ import app.com.diucanteenapp.SharedModel.OrderItemModel;
 
 public class DatabaseHelperPlaceOrder extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
-    private static final String DATABASE_NAME = "OrderManager.db";
+    private static final String DATABASE_NAME = "OrderManagerr.db";
 
     // Order table name
     private static final String TABLE_ORDER = "itemorder";
@@ -26,12 +26,13 @@ public class DatabaseHelperPlaceOrder extends SQLiteOpenHelper {
     private static final String COLUMN_ORDERED_ITEM_NAME = "ordered_item_name";
     private static final String COLUMN_ORDER_BY_USER_EMAIL = "order_by_user_email";
     private static final String COLUMN_ORDER_QUANTITY = "order_quantity";
+    private static final String COLUMN_ORDER_AMOUNT = "order_amount";
     private static final String COLUMN_ORDER_DATE = "order_date";
 
 
     // create order table sql query
     private String CREATE_ORDER_TABLE = "CREATE TABLE " + TABLE_ORDER + "("
-            + COLUMN_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ORDERED_ITEM_NAME + " TEXT,"
+            + COLUMN_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_ORDERED_ITEM_NAME + " TEXT,"+ COLUMN_ORDER_AMOUNT + " REAL,"
             + COLUMN_ORDER_DATE + " TEXT," + COLUMN_ORDER_BY_USER_EMAIL + " TEXT," + COLUMN_ORDER_QUANTITY + " REAL" + ")";
 
 
@@ -70,6 +71,7 @@ public class DatabaseHelperPlaceOrder extends SQLiteOpenHelper {
         values.put(COLUMN_ORDER_BY_USER_EMAIL, orderItemModel.getEmail());
         values.put(COLUMN_ORDER_DATE, orderItemModel.getDate());
         values.put(COLUMN_ORDER_QUANTITY, orderItemModel.getQuantity());
+        values.put(COLUMN_ORDER_AMOUNT, orderItemModel.getAmount());
         // Inserting Row
         db.insert(TABLE_ORDER, null, values);
         Log.v("--------Order--------","");
@@ -77,6 +79,7 @@ public class DatabaseHelperPlaceOrder extends SQLiteOpenHelper {
         Log.v("Email : ",orderItemModel.getEmail());
         Log.v("Date : ",orderItemModel.getDate());
         Log.v("Quantity : ",""+orderItemModel.getQuantity());
+        Log.v("Total Amount : ",""+orderItemModel.getAmount());
         Log.v("--------Order--------","");
         db.close();
     }
@@ -91,6 +94,7 @@ public class DatabaseHelperPlaceOrder extends SQLiteOpenHelper {
                 COLUMN_ORDERED_ITEM_NAME,
                 COLUMN_ORDER_BY_USER_EMAIL,
                 COLUMN_ORDER_DATE,
+                COLUMN_ORDER_AMOUNT,
                 COLUMN_ORDER_QUANTITY
         };
         // sorting orders
@@ -118,6 +122,7 @@ public class DatabaseHelperPlaceOrder extends SQLiteOpenHelper {
                 orderItemModel.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_BY_USER_EMAIL)));
                 orderItemModel.setDate(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_DATE)));
                 orderItemModel.setQuantity(cursor.getInt(cursor.getColumnIndex(COLUMN_ORDER_QUANTITY)));
+                orderItemModel.setAmount(cursor.getInt(cursor.getColumnIndex(COLUMN_ORDER_AMOUNT)));
                 // Adding food item record to list
                 orderItemModels.add(orderItemModel);
             } while (cursor.moveToNext());

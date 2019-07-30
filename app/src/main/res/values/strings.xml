@@ -51,4 +51,5 @@
     <string name="item_name_hint">Enter item name</string>
     <string name="item_stock_hint">Enter item stock</string>
     <string name="item_price_hint">Enter item price in BDT</string>
+    <string name="order">Order</string>
 </resources>

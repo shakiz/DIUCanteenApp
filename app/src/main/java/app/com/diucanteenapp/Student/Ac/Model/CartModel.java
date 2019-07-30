@@ -3,6 +3,7 @@ package app.com.diucanteenapp.Student.Ac.Model;
 public class CartModel {
     private String itemName;
     private String email;
+    
 
     public String getItemName() {
         return itemName;

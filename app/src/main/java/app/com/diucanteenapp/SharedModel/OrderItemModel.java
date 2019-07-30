@@ -2,7 +2,15 @@ package app.com.diucanteenapp.SharedModel;
 
 public class OrderItemModel {
     private String itemName,date,email;
-    private int quantity;
+    private int quantity,amount;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public String getItemName() {
         return itemName;

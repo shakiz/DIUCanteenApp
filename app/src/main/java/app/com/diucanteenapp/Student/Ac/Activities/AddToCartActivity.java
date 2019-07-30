@@ -26,7 +26,7 @@ public class AddToCartActivity extends AppCompatActivity {
     private ArrayList<CartModel> cartModelArrayList;
     private RecyclerViewAdapterForCartItem recyclerViewAdapterForCartItem;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String TAG="ADDTOCARTACTIVITY";
+    private String TAG="AddToCartActivity";
     private String userEmailStr;
     private LinearLayout linearLayout;
 

@@ -4,12 +4,14 @@
     android:layout_margin="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:weightSum="2.25"
     android:background="@drawable/layout_shadow"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight=".75"
         android:text="@string/want_to_add_user"
         android:gravity="center"
         android:id="@+id/userNameToApproveXML"
@@ -18,11 +20,13 @@
         android:layout_margin="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:weightSum="2"
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Add"
@@ -34,7 +38,7 @@
             android:id="@+id/addUserButtonXML"
             android:layout_weight="1"/>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
