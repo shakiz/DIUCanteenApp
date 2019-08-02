@@ -30,6 +30,8 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     private Context context;
     private double price=0;
     private int itemQuantity=0,itemStock=0,totalAmount=0;
+    private int[] singleTotal;
+    private int[] singleQuantity;
     private String userEmailStr;
     private OrderItemModel orderItemModel;
     private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
@@ -48,48 +50,64 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
         storeFoodItemData=new StoreFoodItemData(context);
         databaseHelperSaveCartDetails=new DatabaseHelperSaveCartDetails(context);
         databaseHelperPlaceOrder=new DatabaseHelperPlaceOrder(context);
+        singleTotal = new int[cartModelArrayList.size()];
+        singleQuantity = new int[cartModelArrayList.size()];
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
-        final CartModel cartModel=cartModelArrayList.get(i);
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
+        final CartModel cartModel=cartModelArrayList.get(position);
+
         itemStock=storeFoodItemData.getItemStockBasedOnName(cartModel.getItemName());
         price=storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName());
         viewHolder.itemName.setText(cartModel.getItemName());
         viewHolder.itemPrice.setText(price+""+" Tk.");
         Log.v(TAG,"STOCK : > "+itemStock);
+        Log.v(TAG,"PRICE  : > "+price);
         viewHolder.itemStock.setText(""+itemStock);
+
+
         viewHolder.increaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (itemQuantity<itemStock){
+
+                if (singleQuantity[position]<storeFoodItemData.getItemStockBasedOnName(cartModel.getItemName())){
                     itemQuantity=++itemQuantity;
-                    viewHolder.itemQuantity.setText(""+itemQuantity);
-                    totalAmount= (int) (itemQuantity*price);
-                    viewHolder.totalAmount.setText(""+totalAmount+" Tk.");
+                    singleQuantity[position]++;
+                    Log.v(TAG,"SINGLE QUAN : "+singleQuantity[position]);
+                    viewHolder.itemQuantity.setText(""+singleQuantity[position]);
+
+                    singleTotal[position]= (int) (singleQuantity[position]*storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName()));
+                    Log.v(TAG,"SINGLE : "+singleTotal[position]);
+                    viewHolder.totalAmount.setText("Total amount : "+singleTotal[position]+" Tk.");
+
                 }
                 else{
                     Toast.makeText(context,"Stock is empty",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
         viewHolder.decreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (itemQuantity>0){
-                    itemQuantity=--itemQuantity;
-                    viewHolder.itemQuantity.setText(""+itemQuantity);
-                    viewHolder.totalAmount.setText(""+(itemQuantity*storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName()))+" Tk.");
+                if (singleQuantity[position]>0){
+                    singleQuantity[position]--;
+                    singleTotal[position]= (int) (singleQuantity[position]*storeFoodItemData.getItemPriceBasedOnName(cartModel.getItemName()));
+                    viewHolder.itemQuantity.setText(""+singleQuantity[position]);
+                    viewHolder.totalAmount.setText("Total Amount : "+singleTotal[position]+" Tk.");
                 }
-                else if (itemQuantity<=0){
+                else if (singleQuantity[position]<=0){
                     Toast.makeText(context,"Quantity can not be zero.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
         viewHolder.placeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (itemQuantity>0){
+                if (singleQuantity[position]>0){
                     orderItemModel=new OrderItemModel();
                     orderItemModel.setEmail(userEmailStr);
                     orderItemModel.setQuantity(itemQuantity);
@@ -97,11 +115,6 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                     orderItemModel.setDate(getDate());
                     orderItemModel.setAmount(totalAmount);
                     databaseHelperPlaceOrder.addOrder(orderItemModel);
-
-                    context.startActivity(new Intent(context, PaymentAndOrderActivity.class).putExtra("name",cartModel.getItemName())
-                                    .putExtra("quantity",itemQuantity)
-                                    .putExtra("stock",itemStock)
-                                    .putExtra("amount",totalAmount));
                 }
                 else{
                     Toast.makeText(context,"Please check quantity",Toast.LENGTH_SHORT).show();

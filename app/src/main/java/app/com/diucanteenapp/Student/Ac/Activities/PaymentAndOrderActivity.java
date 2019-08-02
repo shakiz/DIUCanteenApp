@@ -34,6 +34,9 @@ import java.util.concurrent.TimeUnit;
 
 import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
+import app.com.diucanteenapp.SharedDatabaseClasses.DatabaseHelperPlaceOrder;
+import app.com.diucanteenapp.SharedModel.OrderItemModel;
+import app.com.diucanteenapp.Student.Ac.DatabaseHelper.DatabaseHelperSaveCartDetails;
 
 public class PaymentAndOrderActivity extends AppCompatActivity {
 
@@ -46,7 +49,9 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     private StoreFoodItemData storeFoodItemData;
     private  long startTime = 0;
     private ArrayList<String> paymentMethodsArrayList;
+    private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
     private ArrayAdapter<String> spinnerAdapter;
+    private ArrayList<OrderItemModel> orderItemModelList;
     private Spinner paymentMethodSpinner;
 
     //runs without a timer by reposting this handler at the end of the runnable
@@ -74,8 +79,8 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         //This method is used to initialize the attributes with xml
         init();
         //This method will be used to get data from previous activity or fragment
-        getIntentData();
-        totalAmountTXT.setText("Total amount = "+totalAmount);
+        getAndSetData();
+
         setSpinnerAdapter();
         //Setting the on click listener for order button which will pop up a QR code for the order
         orderAfterPayment.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +89,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
                 //Here we are telling that after placing the order a qr code will also be generated
                 //and later it will show on a pop dialog
                 //this  posts a message to the main thread from our timertask
-                //and updates the textfield
+                //and updates the text field
                 startTime = System.currentTimeMillis();
                 timerHandler.postDelayed(timerRunnable, 0);
                 final Dialog dialog=new Dialog(PaymentAndOrderActivity.this);
@@ -92,7 +97,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
                 //This method helps to initialize the dialog components with xml
                 initDialogComponents(dialog);
                 //This method generates QR code and set it to imageView
-                generateQRCodeAndSetToImageView(itemName,itemQuantity);
+                generateQRCodeAndSetToImageView(totalAmount);
                 dialog.setTitle("QR code");
                 try{
                     dialog.show();
@@ -100,12 +105,12 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
                 catch (Exception e){
                     Log.v(TAG,e.getMessage());
                 }
-                if (storeFoodItemData.updateItemStock(itemName,(stock-itemQuantity))==true){
-                    Toast.makeText(getApplicationContext(),"Updated stock",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Update failed",Toast.LENGTH_SHORT).show();
-                }
+//                if (storeFoodItemData.updateItemStock(itemName,(stock-itemQuantity))==true){
+//                    Toast.makeText(getApplicationContext(),"Updated stock",Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    Toast.makeText(getApplicationContext(),"Update failed",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }
@@ -127,12 +132,15 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         paymentMethodsArrayList.add("SureCash");
     }
 
-    private void getIntentData() {
-        itemName=getIntent().getStringExtra("name");
-        itemQuantity=getIntent().getIntExtra("quantity",0);
-        stock=getIntent().getIntExtra("stock",0);
-        totalAmount=getIntent().getIntExtra("amount",0);
-        Log.v(TAG,""+itemName+" : "+itemQuantity + " : "+stock + " : "+totalAmount);
+    private void getAndSetData() {
+        orderItemModelList = databaseHelperPlaceOrder.getAllFoodOrders();
+        for(int start=0;start<orderItemModelList.size();start++){
+            Log.v(TAG,"Name  : "+orderItemModelList.get(start).getItemName()+ " :: Amount : "+orderItemModelList.get(start).getAmount());
+            totalAmount += orderItemModelList.get(start).getAmount();
+        }
+
+        totalAmountTXT.setText("Total amount = "+totalAmount);
+
     }
 
     private void initDialogComponents(Dialog dialog) {
@@ -142,20 +150,22 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     public void init(){
         orderAfterPayment=findViewById(R.id.orderButtonXMLPayment);
         storeFoodItemData=new StoreFoodItemData(getApplicationContext());
+        databaseHelperPlaceOrder = new DatabaseHelperPlaceOrder(this);
         paymentMethodSpinner = findViewById(R.id.paymentMethodsSpinner);
         totalAmountTXT = findViewById(R.id.TotalAmount);
         paymentMethodsArrayList = new ArrayList<>();
+        orderItemModelList = new ArrayList<>();
         time=findViewById(R.id.time);
     }
 
-    private void generateQRCodeAndSetToImageView(String itemName,int itemQuantity) {
+    private void generateQRCodeAndSetToImageView(int totalAmount) {
         MultiFormatWriter multiFormatWriter=new MultiFormatWriter();
         try{
             //First we are creating a bitMatrix by the help of multiFormatter
             //Second we need a barcodeEncoder
             //Third we are encoding a bitMap by the help of barcodeEncoder
             //And finally setting the bitMap to our imageView for showing the barCode
-            BitMatrix bitMatrix = multiFormatWriter.encode(itemName+itemQuantity, BarcodeFormat.QR_CODE,200,200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(""+totalAmount, BarcodeFormat.QR_CODE,200,200);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             qrCodeImageView.setImageBitmap(bitmap);

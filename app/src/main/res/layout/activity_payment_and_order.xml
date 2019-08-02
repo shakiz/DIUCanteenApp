@@ -75,7 +75,6 @@
                         android:padding="4dp"
                         android:id="@+id/paymentMethodsSpinner"/>
 
-
                 </LinearLayout>
 
                 <EditText
@@ -108,7 +107,6 @@
                     android:id="@+id/TotalAmount"
                     android:padding="4dp"
                     android:background="@drawable/editext_back"/>
-
             </LinearLayout>
 
         </LinearLayout>

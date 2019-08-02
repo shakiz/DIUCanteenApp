@@ -1,5 +1,6 @@
 package app.com.diucanteenapp.Student.Ac.Activities;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,6 +32,7 @@ public class AddToCartActivity extends AppCompatActivity {
     private String TAG="AddToCartActivity";
     private String userEmailStr;
     private LinearLayout linearLayout;
+    private Button orderBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,14 @@ public class AddToCartActivity extends AppCompatActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
+
+        orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddToCartActivity.this,PaymentAndOrderActivity.class));
+            }
+        });
     }
 
     private void getIntentDataEmail() {
@@ -78,6 +90,7 @@ public class AddToCartActivity extends AppCompatActivity {
         databaseHelperSaveCartDetails=new DatabaseHelperSaveCartDetails(getApplicationContext());
         cartModelArrayList=new ArrayList<>();
         swipeRefreshLayout=findViewById(R.id.swipeRefreshLayout);
+        orderBtn = findViewById(R.id.OrderAllItem);
         linearLayout=findViewById(R.id.linearLayoutCartXML);
     }
 }
