@@ -103,6 +103,7 @@ public class AdminHomeActivity extends AppCompatActivity implements NavigationVi
         if (fragment!=null){
             FragmentManager fragmentManager=getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
             fragmentTransaction.replace(R.id.fragmentScreen,fragment);
             fragmentTransaction.commit();
         }
