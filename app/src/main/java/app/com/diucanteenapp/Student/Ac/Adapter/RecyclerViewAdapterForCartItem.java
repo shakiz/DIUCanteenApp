@@ -115,6 +115,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                     orderItemModel.setDate(getDate());
                     orderItemModel.setAmount(totalAmount);
                     databaseHelperPlaceOrder.addOrder(orderItemModel);
+                    Toast.makeText(context,"Item added",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(context,"Please check quantity",Toast.LENGTH_SHORT).show();

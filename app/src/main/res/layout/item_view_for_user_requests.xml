@@ -4,14 +4,13 @@
     android:layout_margin="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="2.25"
     android:background="@drawable/layout_shadow"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".75"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
         android:text="@string/want_to_add_user"
         android:gravity="center"
         android:id="@+id/userNameToApproveXML"
@@ -20,34 +19,37 @@
         android:layout_margin="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_height="wrap_content"
         android:weightSum="2"
+        android:layout_marginBottom="2dp"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:text="Add"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
-            android:padding="5dp"
-            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:layout_margin="8dp"
             android:textAllCaps="false"
             android:id="@+id/addUserButtonXML"
             android:layout_weight="1"/>
+
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:layout_margin="10dp"
-            android:textAllCaps="false"
-            android:text="Remove"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="Add"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
-            android:id="@+id/removeUserButtonXML"/>
+            android:padding="4dp"
+            android:layout_margin="8dp"
+            android:textAllCaps="false"
+            android:id="@+id/removeUserButtonXML"
+            android:layout_weight="1"/>
+
 
     </LinearLayout>
 

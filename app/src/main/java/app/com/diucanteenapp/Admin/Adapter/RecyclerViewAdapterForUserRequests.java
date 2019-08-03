@@ -41,7 +41,7 @@ public class RecyclerViewAdapterForUserRequests extends RecyclerView.Adapter<Rec
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final int position=i;
-        viewHolder.userName.setText("Do you want to add "+userArrayList.get(i)+" ?");
+        viewHolder.userName.setText("Want to add user "+userArrayList.get(i)+" ?");
         viewHolder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

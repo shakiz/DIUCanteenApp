@@ -65,7 +65,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
             int minutes = seconds / 60;
             seconds = seconds % 60;
 
-            time.setText("Your food will be delivered : "+String.format("%d:%02d", minutes, seconds));
+            time.setText("Food will be delivered : "+String.format("%d:%02d", minutes, seconds));
 
             timerHandler.postDelayed(this, 500);
         }

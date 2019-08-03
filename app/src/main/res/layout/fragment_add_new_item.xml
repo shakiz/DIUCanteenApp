@@ -48,6 +48,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="6dp"
+                    android:inputType="number"
                     android:layout_below="@id/itemNameXMl"
                     android:background="@drawable/editext_back"
                     android:ellipsize="end"
@@ -64,6 +65,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
+                    android:inputType="number"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="6dp"
