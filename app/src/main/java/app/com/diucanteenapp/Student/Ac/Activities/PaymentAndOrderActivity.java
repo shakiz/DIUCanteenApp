@@ -49,9 +49,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     private StoreFoodItemData storeFoodItemData;
     private  long startTime = 0;
     private ArrayList<String> paymentMethodsArrayList;
-    private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
     private ArrayAdapter<String> spinnerAdapter;
-    private ArrayList<OrderItemModel> orderItemModelList;
     private Spinner paymentMethodSpinner;
 
     //runs without a timer by reposting this handler at the end of the runnable
@@ -133,13 +131,11 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     }
 
     private void getAndSetData() {
-        orderItemModelList = databaseHelperPlaceOrder.getAllFoodOrders();
-        for(int start=0;start<orderItemModelList.size();start++){
-            Log.v(TAG,"Name  : "+orderItemModelList.get(start).getItemName()+ " :: Amount : "+orderItemModelList.get(start).getAmount());
-            totalAmount += orderItemModelList.get(start).getAmount();
-        }
+        Intent intent = getIntent();
+        totalAmount = intent.getIntExtra("amount",0);
 
         totalAmountTXT.setText("Total amount = "+totalAmount);
+        Log.v(TAG,"TOTAL : "+totalAmount);
 
     }
 
@@ -150,11 +146,9 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     public void init(){
         orderAfterPayment=findViewById(R.id.orderButtonXMLPayment);
         storeFoodItemData=new StoreFoodItemData(getApplicationContext());
-        databaseHelperPlaceOrder = new DatabaseHelperPlaceOrder(this);
         paymentMethodSpinner = findViewById(R.id.paymentMethodsSpinner);
         totalAmountTXT = findViewById(R.id.TotalAmount);
         paymentMethodsArrayList = new ArrayList<>();
-        orderItemModelList = new ArrayList<>();
         time=findViewById(R.id.time);
     }
 

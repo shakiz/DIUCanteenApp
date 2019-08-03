@@ -30,7 +30,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     private Context context;
     private double price=0;
     private int itemQuantity=0,itemStock=0,totalAmount=0;
-    private int[] singleTotal;
+    public int[] singleTotal;
     private int[] singleQuantity;
     private String userEmailStr;
     private OrderItemModel orderItemModel;
@@ -52,6 +52,9 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
         databaseHelperPlaceOrder=new DatabaseHelperPlaceOrder(context);
         singleTotal = new int[cartModelArrayList.size()];
         singleQuantity = new int[cartModelArrayList.size()];
+    }
+
+    public RecyclerViewAdapterForCartItem() {
     }
 
     @Override
@@ -113,7 +116,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
                     orderItemModel.setQuantity(itemQuantity);
                     orderItemModel.setItemName(cartModel.getItemName());
                     orderItemModel.setDate(getDate());
-                    orderItemModel.setAmount(totalAmount);
+                    orderItemModel.setAmount(singleTotal[position]);
                     databaseHelperPlaceOrder.addOrder(orderItemModel);
                     Toast.makeText(context,"Item added",Toast.LENGTH_SHORT).show();
                 }

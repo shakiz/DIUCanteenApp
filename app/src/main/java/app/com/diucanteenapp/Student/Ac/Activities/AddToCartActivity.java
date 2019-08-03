@@ -30,6 +30,7 @@ public class AddToCartActivity extends AppCompatActivity {
     private RecyclerViewAdapterForCartItem recyclerViewAdapterForCartItem;
     private SwipeRefreshLayout swipeRefreshLayout;
     private String TAG="AddToCartActivity";
+    private int total=0;
     private String userEmailStr;
     private LinearLayout linearLayout;
     private Button orderBtn;
@@ -67,7 +68,10 @@ public class AddToCartActivity extends AppCompatActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddToCartActivity.this,PaymentAndOrderActivity.class));
+                for(int amount : recyclerViewAdapterForCartItem.singleTotal){
+                    total+=amount;
+                }
+                startActivity(new Intent(AddToCartActivity.this,PaymentAndOrderActivity.class).putExtra("amount",total));
             }
         });
     }
