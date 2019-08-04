@@ -33,7 +33,7 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
     private ArrayList<FoodItemModel> foodItemModelArrayList;
     private Context context;
     private StoreFoodItemData storeFoodItemData;
-    private String picturePath;
+    private String picturePath ,TAG = "RecyclerViewItemDetailsAdapter";
     private LinearLayout linearLayout;
 
     @NonNull
@@ -81,6 +81,9 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
                 dataBundle.putString("category",foodItemModel.getItemCategory());
                 dataBundle.putInt("stock",foodItemModel.getItemStockAvailability());
                 dataBundle.putString("path",picturePath);
+
+                dataBundle.putParcelable("data",foodItemModel);
+
                 //This will take to another ui where admin can update the item details
                 EditItemFragment editItemFragment=new EditItemFragment();
                 //Here we are passing the dataBundle that we create which has the item details

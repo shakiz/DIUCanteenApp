@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:text="Add"
+            android:text="Delete"
             android:background="@drawable/buttons_shape"
             android:textColor="@android:color/white"
             android:padding="4dp"

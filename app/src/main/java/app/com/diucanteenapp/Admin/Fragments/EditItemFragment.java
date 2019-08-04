@@ -30,6 +30,7 @@ import java.io.File;
 import java.util.ArrayList;
 import app.com.diucanteenapp.Admin.DatabaseHelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
+import app.com.diucanteenapp.SharedModel.FoodItemModel;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -53,6 +54,7 @@ public class EditItemFragment extends Fragment {
     private ArrayAdapter<String> stringArrayAdapterForCategoryItem;
     private String picturePath;
     private StoreFoodItemData storeFoodItemData;
+    private FoodItemModel foodItemModel;
 
     public EditItemFragment() {
         // Required empty public constructor
@@ -72,6 +74,9 @@ public class EditItemFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_edit_item, container, false);
         //This method will be used to initialize all the attributes with xml
         init(view);
+
+
+
         //This method will get the data from previous fragment and will set those data to edit fragments components
         getBundleDataAndSetToComponents();
         //This method will be used to populate arraylist for category
@@ -155,12 +160,23 @@ public class EditItemFragment extends Fragment {
     }
 
     private void getBundleDataAndSetToComponents() {
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            foodItemModel = bundle.getParcelable("data"); // Key
+        }
         //In the following 5 lines of code we are retrieving the data from previous fragment
-        itemNameStr=this.getArguments().getString("name");
-        itemCategoryStr=this.getArguments().getString("category");
-        itemStockInt=this.getArguments().getInt("stock");
-        itemPriceDouble=this.getArguments().getDouble("price");
-        picturePath=this.getArguments().getString("path");
+//        itemNameStr=this.getArguments().getString("name");
+//        itemCategoryStr=this.getArguments().getString("category");
+//        itemStockInt=this.getArguments().getInt("stock");
+//        itemPriceDouble=this.getArguments().getDouble("price");
+//        picturePath=this.getArguments().getString("path");
+
+        itemNameStr = foodItemModel.getItemName();
+        itemCategoryStr = foodItemModel.getItemCategory();
+        itemStockInt = foodItemModel.getItemStockAvailability();
+        itemPriceDouble = foodItemModel.getItemPrice();
+        picturePath = foodItemModel.getItemIcon();
         Log.v(TAG,itemNameStr+" : "+itemCategoryStr+ " : "+itemStockInt+" : "+itemPriceDouble);
 
         //Now we can set those data into our EditItemFragment components
