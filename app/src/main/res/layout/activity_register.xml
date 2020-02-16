@@ -30,7 +30,7 @@
                     android:orientation="vertical"
                     android:id="@+id/linearlayoutheading"
                     android:gravity="center_horizontal"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/rounded_layout_2"
                     android:padding="5dp">
 
                     <ImageView
@@ -74,17 +74,16 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:tint="@android:color/white"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
+                        android:padding="4dp"
                         tools:contentDescription="null"
                         android:id="@+id/imageViewUserIcon"
                         android:src="@drawable/ic_person_black_24dp"/>
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_toRightOf="@+id/imageViewUserIcon"
+                        android:background="@drawable/rectangle_background"
                         android:layout_alignParentTop="true"
                         android:hint="Username"
                         android:paddingLeft="20dp"
@@ -105,16 +104,15 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:tint="@android:color/white"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
+                        android:padding="4dp"
                         tools:contentDescription="null"
                         android:id="@+id/imageViewMobileIcon"
                         android:src="@drawable/ic_phone_android_black_24dp"/>
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rectangle_background"
                         android:layout_toRightOf="@+id/imageViewMobileIcon"
                         android:layout_alignParentTop="true"
                         android:hint="Mobile Number"
@@ -137,18 +135,18 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:tint="@android:color/white"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
                         tools:contentDescription="null"
                         android:id="@+id/imageViewEmailIcon"
-                        android:src="@drawable/ic_person_black_24dp"/>
+                        android:src="@drawable/ic_mail_black_24dp"/>
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_toRightOf="@+id/imageViewEmailIcon"
                         android:layout_alignParentTop="true"
+                        android:background="@drawable/rectangle_background"
                         android:hint="Email"
                         android:paddingLeft="20dp"
                         android:id="@+id/emailXML"
@@ -168,15 +166,14 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:tint="@android:color/white"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
+                        android:padding="6dp"
                         android:id="@+id/imageViewUSerPassword"
                         android:src="@drawable/ic_pass_key_black_24dp"/>
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rectangle_background"
                         android:id="@+id/passwordXML"
                         android:layout_toRightOf="@+id/imageViewUSerPassword"
                         android:layout_alignParentTop="true"
@@ -200,15 +197,14 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:tint="@android:color/white"
-                        android:background="@color/colorPrimary"
-                        android:padding="8dp"
+                        android:padding="6dp"
                         android:id="@+id/imageViewConfirmUSerPassword"
                         android:src="@drawable/ic_pass_key_black_24dp"/>
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rectangle_background"
                         android:id="@+id/confirmPasswordXML"
                         android:layout_toRightOf="@+id/imageViewConfirmUSerPassword"
                         android:layout_alignParentTop="true"
@@ -224,15 +220,17 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_below="@id/relativeLayoutForConfirmPasswordSection"
                     android:id="@+id/registerButtonXML"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:textAllCaps="false"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/md_white_1000"
                     android:text="Register"
-                    android:layout_margin="30dp"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_margin="16dp"
                     android:background="@drawable/buttons_shape"/>
 
 

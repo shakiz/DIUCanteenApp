@@ -100,9 +100,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setSpinnerAdapter() {
         // Creating adapter for spinner
-        spinnerArrayAdapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,spinnerDataArrayList);
+        spinnerArrayAdapter=new ArrayAdapter<>(this,R.layout.spinner_drop,spinnerDataArrayList);
         // Drop down layout style - list view with radio button
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         // attaching data adapter to spinner
         userTypeSpinner.setAdapter(spinnerArrayAdapter);
     }

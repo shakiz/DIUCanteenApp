@@ -3,16 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="textColor">#ffffff</color>
-    <color name="back_color_category">#4F5764</color>
-    <color name="colorLayoutBack">#43978D</color>
-
     <color name="black_transparent_10">#10000000</color>
     <color name="transparent">#00000000</color>
 
     <color name="colorRed">#f44336</color>
     <color name="shadow">#66000000</color>
-    <color name="white_transparent">#97FFFFFF</color>
+    <color name="white_transparent">#E6FFFFFF</color>
+    <color name="white_transparent2">#66FFFFFF</color>
     <color name="common_page_bg">#e7f7fe</color>
 
     <color name="monitoring">#ffc107</color>
@@ -24,6 +21,22 @@
     <color name="app_blue_transparent">#97ffc107</color>
     <color name="page_bg">#c7d1d6</color>
     <color name="box_bg">#7fff</color>
+
+
+    <color name="background_color_blue_gray">#212121</color>
+    <color name="color_card_2">#A9B6B1</color>
+    <color name="card_color_details">#16443A</color>
+
+    <color name="colorTransparent">#FFffffff</color>
+    <color name="layoutPart1Color">#BC3EC5B5</color>
+    <color name="button_back_color">#274058</color>
+    <color name="detailsLayoutColor">#4E93C9</color>
+    <color name="textColor">#776D6D</color>
+    <color name="button_color">#5D5EB2</color>
+    <color name="commonColor">#DA434799</color>
+    <color name="commonColorCard">#F0F0F0</color>
+    <color name="commonColorIcon">#212121</color>
+
 
     <!--reds-->
     <color name="md_red_50">#FFEBEE</color>
@@ -318,16 +331,4 @@
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
-
-
-    <color name="background_color_blue_gray">#212121</color>
-    <color name="color_card_2">#A9B6B1</color>
-    <color name="card_color_details">#16443A</color>
-
-
-    <color name="colorTransparent">#FFffffff</color>
-    <color name="layoutPart1Color">#BC3EC5B5</color>
-    <color name="button_back_color">#274058</color>
-    <color name="detailsLayoutColor">#4E93C9</color>
-
 </resources>
