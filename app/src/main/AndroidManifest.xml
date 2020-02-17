@@ -13,38 +13,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
         <activity
-            android:name=".Student.Ac.Activities.PaymentAndOrderActivity"
+            android:name=".activities.student.PaymentAndOrderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"
             android:label="@string/payment"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Student.Ac.Activities.AddToCartActivity"
+            android:name=".activities.student.AddToCartActivity"
             android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait"
             android:label="@string/add_to_cart"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Student.Ac.Activities.FoodCategoryActivity"
+            android:name=".activities.student.FoodCategoryActivity"
             android:screenOrientation="portrait"
             android:label="@string/food_type"
             android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Admin.AdminHomeActivity"
+            android:name=".activities.admin.AdminHomeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing"
             android:label="@string/title_activity_admin_home"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".SharedActivities.RegisterActivity"
+            android:name=".activities.onboard.RegisterActivity"
             android:screenOrientation="portrait"
             android:label="@string/register"
             android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppThemeNoActionBar" />
 
         <activity
-            android:name=".SharedActivities.LoginActivity"
+            android:name=".activities.onboard.LoginActivity"
             android:theme="@style/AppThemeNoActionBar"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing">

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
-    tools:context=".Admin.AdminHomeActivity">
+    tools:context=".activities.admin.AdminHomeActivity">
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:gravity="center_vertical"
     android:layout_height="match_parent"
-    tools:context=".SharedActivities.LoginActivity">
+    tools:context=".activities.onboard.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,10 +37,9 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_auth_black_24dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_security_black_24dp"
                         android:tint="@android:color/white"
-                        android:background="@drawable/circle"
                         android:contentDescription="null" />
                     <TextView
                         android:layout_width="match_parent"
@@ -68,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:id="@+id/relativeLayoutForEmailSection"
+                    android:id="@+id/emailLayout"
                     android:layout_margin="10dp"
                     android:layout_below="@id/imageview1forReectangle">
 
@@ -90,6 +89,7 @@
                         android:background="@drawable/rectangle_background"
                         android:paddingLeft="20dp"
                         android:id="@+id/emailXML"
+                        android:inputType="textEmailAddress"
                         android:textSize="14sp"
                         android:layout_alignParentBottom="@+id/imageViewUSerIcon"/>
 
@@ -98,10 +98,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/relativeLayoutForPasswordSection"
+                    android:id="@+id/passwordLayout"
                     android:padding="5dp"
                     android:layout_margin="10dp"
-                    android:layout_below="@id/relativeLayoutForEmailSection">
+                    android:layout_below="@id/emailLayout">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -131,7 +131,7 @@
                     style="@style/Base.TextAppearance.AppCompat.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_below="@id/relativeLayoutForPasswordSection"
+                    android:layout_below="@id/passwordLayout"
                     android:id="@+id/userTypeSpinnerXML"
                     android:background="@drawable/rectangle_background"
                     android:padding="5dp"

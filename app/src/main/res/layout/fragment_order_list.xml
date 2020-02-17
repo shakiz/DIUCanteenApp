@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/linearLayoutOrderListXML"
-    tools:context=".Admin.Fragments.OrderListFragment">
+    tools:context=".fragments.admin.OrderListFragment">
 
 
     <TextView

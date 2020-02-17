@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:gravity="center_vertical"
     android:layout_height="match_parent"
-    tools:context=".SharedActivities.LoginActivity">
+    tools:context=".activities.onboard.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,10 +36,9 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_auth_black_24dp"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_security_black_24dp"
                         android:tint="@android:color/white"
-                        android:background="@drawable/circle"
                         android:contentDescription="null" />
                     <TextView
                         android:layout_width="match_parent"
@@ -67,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:id="@+id/relativeLayoutForUsernameSection"
+                    android:id="@+id/layoutUsername"
                     android:layout_margin="10dp"
                     android:layout_below="@id/imageview1forReectangle">
 
@@ -86,6 +85,7 @@
                         android:background="@drawable/rectangle_background"
                         android:layout_alignParentTop="true"
                         android:hint="Username"
+                        android:inputType="text"
                         android:paddingLeft="20dp"
                         android:id="@+id/usernameXML"
                         android:textSize="15sp"
@@ -97,40 +97,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:id="@+id/relativeLayoutForMobileNumberSection"
+                    android:id="@+id/layoutEmail"
                     android:layout_margin="10dp"
-                    android:layout_below="@id/relativeLayoutForUsernameSection">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="4dp"
-                        tools:contentDescription="null"
-                        android:id="@+id/imageViewMobileIcon"
-                        android:src="@drawable/ic_phone_android_black_24dp"/>
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/rectangle_background"
-                        android:layout_toRightOf="@+id/imageViewMobileIcon"
-                        android:layout_alignParentTop="true"
-                        android:hint="Mobile Number"
-                        android:paddingLeft="20dp"
-                        android:inputType="number"
-                        android:id="@+id/mobileNumberXML"
-                        android:textSize="15sp"
-                        android:layout_alignParentBottom="@+id/imageViewMobileIcon"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:id="@+id/relativeLayoutForEmailSection"
-                    android:layout_margin="10dp"
-                    android:layout_below="@id/relativeLayoutForMobileNumberSection">
+                    android:layout_below="@id/layoutUsername">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -148,6 +117,7 @@
                         android:layout_alignParentTop="true"
                         android:background="@drawable/rectangle_background"
                         android:hint="Email"
+                        android:inputType="textEmailAddress"
                         android:paddingLeft="20dp"
                         android:id="@+id/emailXML"
                         android:textSize="15sp"
@@ -158,10 +128,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/relativeLayoutForPasswordSection"
+                    android:id="@+id/layoutPassword"
                     android:padding="5dp"
                     android:layout_margin="10dp"
-                    android:layout_below="@id/relativeLayoutForEmailSection">
+                    android:layout_below="@id/layoutEmail">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -189,10 +159,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/relativeLayoutForConfirmPasswordSection"
+                    android:id="@+id/layoutConfirmPassword"
                     android:padding="5dp"
                     android:layout_margin="10dp"
-                    android:layout_below="@id/relativeLayoutForPasswordSection">
+                    android:layout_below="@id/layoutPassword">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -217,11 +187,41 @@
                         android:importantForAutofill="no" />
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:id="@+id/layoutMobileNumber"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/layoutConfirmPassword">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="4dp"
+                        tools:contentDescription="null"
+                        android:id="@+id/imageViewMobileIcon"
+                        android:src="@drawable/ic_phone_android_black_24dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rectangle_background"
+                        android:layout_toRightOf="@+id/imageViewMobileIcon"
+                        android:layout_alignParentTop="true"
+                        android:hint="Mobile Number"
+                        android:paddingLeft="20dp"
+                        android:inputType="number"
+                        android:id="@+id/mobileNumberXML"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="@+id/imageViewMobileIcon"/>
+
+                </RelativeLayout>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_below="@id/relativeLayoutForConfirmPasswordSection"
+                    android:layout_below="@id/layoutMobileNumber"
                     android:id="@+id/registerButtonXML"
                     android:textStyle="bold"
                     android:textSize="16sp"

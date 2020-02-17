@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:weightSum="3"
     android:id="@+id/linearLayoutCartXML"
-    tools:context=".Student.Ac.Activities.AddToCartActivity">
+    tools:context=".activities.student.AddToCartActivity">
 
     <TextView
         android:layout_width="match_parent"
