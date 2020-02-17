@@ -104,8 +104,8 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
 
     public void setSpinnerAdapter(){
         setSpinnerData();
-        spinnerAdapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,paymentMethodsArrayList);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAdapter = new ArrayAdapter<>(this,R.layout.spinner_drop,paymentMethodsArrayList);
+        spinnerAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         paymentMethodSpinner.setAdapter(spinnerAdapter);
     }
 

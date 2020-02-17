@@ -224,8 +224,8 @@ public class EditItemFragment extends Fragment {
     }
 
     private void setSpinnerAdapter(){
-        stringArrayAdapterForCategoryItem=new ArrayAdapter<>(context,android.R.layout.simple_spinner_item,categoryNamesArrayList);
-        stringArrayAdapterForCategoryItem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        stringArrayAdapterForCategoryItem=new ArrayAdapter<>(context,R.layout.spinner_drop,categoryNamesArrayList);
+        stringArrayAdapterForCategoryItem.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
         itemCategorySpinner.setAdapter(stringArrayAdapterForCategoryItem);
     }
 

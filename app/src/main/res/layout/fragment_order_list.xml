@@ -13,15 +13,17 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Order List"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:textColor="@color/md_grey_800"
         android:textStyle="bold"
-        android:layout_margin="5dp"/>
+        android:padding="8dp"
+        android:layout_margin="8dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerViewOrderListXML"
         android:padding="5dp"
-        android:layout_margin="10dp" />
+        android:layout_margin="8dp" />
 
 </LinearLayout>

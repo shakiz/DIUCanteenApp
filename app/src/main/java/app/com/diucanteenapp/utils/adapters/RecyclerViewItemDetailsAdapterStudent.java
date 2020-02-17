@@ -32,7 +32,7 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //This will create and inflater which will later be used to inflate the layout
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_view_for_all_item_for_student_recyclerview,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_recycler_for_all_item_for_student_recyclerview,viewGroup,false);
         return new ViewHolder(view);
     }
 
@@ -83,8 +83,8 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
     public class ViewHolder extends RecyclerView.ViewHolder{
         //Here we are initializing all the components that we have for item
         private TextView itemName,itemPrice,itemCategory,itemStock;
-        private ImageView itemIcon;
-        private Button itemAddTocart;
+        private ImageView itemIcon,itemAddTocart;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemName=itemView.findViewById(R.id.foodItemItemNameXML);

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/layout_shadow"
-        android:orientation="vertical">
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="8dp"
+        android:translationZ="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,20 +20,17 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:padding="1dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:id="@+id/foodItemIconXML"
-                android:src="@drawable/ic_menu_gallery"
-                android:background="@drawable/layout_shadow"/>
+                android:src="@drawable/ic_image_black_24dp"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".8"
                 android:padding="5dp"
                 android:gravity="center_vertical"
                 android:layout_margin="5dp"
@@ -41,21 +39,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:layout_margin="3dp"
+                    android:textColor="@color/md_grey_800"
+                    android:padding="4dp"
                     android:id="@+id/foodItemItemNameXML"
                     android:text="Cheese and coffee"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_margin="3dp"
+                        android:textColor="@color/md_grey_800"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="4dp"
                         android:id="@+id/foodItemPriceXML"
                         android:textStyle="bold"
                         android:text="Price : 6"/>
@@ -64,7 +65,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_margin="3dp"
+                        android:textColor="@color/md_grey_800"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="4dp"
                         android:id="@+id/foodItemStockXML"
                         android:textStyle="bold"
                         android:text="Stock : 7"/>
@@ -73,37 +77,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_margin="3dp"
+                        android:textColor="@color/md_grey_800"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="4dp"
                         android:id="@+id/foodItemCategoryXML"
                         android:textStyle="bold"
                         android:text="Category"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_margin="3dp"
-                        android:id="@+id/foodItemAddToCartXML"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:background="@drawable/buttons_shape"
-                        android:textColor="@android:color/white"
-                        android:text="Add to cart"/>
+            </LinearLayout>
 
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight=".2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:id="@+id/foodItemAddToCartXML"
+                    android:src="@drawable/ic_add_shopping_cart_black_24dp"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

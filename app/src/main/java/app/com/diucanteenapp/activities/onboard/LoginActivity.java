@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         if (userTypeStr.equals("Admin")){
             //Here we are checking the email and password for admin with the admin table
             try{
-                if (emailStr.equals("mfushahedcse42@gmail.com") && passwordStr.equals("12345")){
+                if (emailStr.equals("shakil.py@gmail.com") && passwordStr.equals("12345")){
                     Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
                     //Here we are adding the user email for the purpose of session [For admin]
                     userDetailsEditor.putString("email",emailStr);

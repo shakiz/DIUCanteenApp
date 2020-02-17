@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
@@ -36,7 +37,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(context).inflate(R.layout.item_view_for_cart_item_recyclerview,viewGroup,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.adapter_recycler_cart_item_recyclerview,viewGroup,false);
         return new ViewHolder(view);
     }
 
@@ -138,8 +139,8 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView itemName,itemPrice,itemQuantity,increaseQuantity,decreaseQuantity,totalAmount,itemStock;
-        Button placeOrderButton,deleteIemButton;
+        TextView itemName,itemPrice,itemQuantity,totalAmount,itemStock;
+        ImageView placeOrderButton,deleteIemButton,increaseQuantity,decreaseQuantity;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //Here we are initiating all the attributes with xml

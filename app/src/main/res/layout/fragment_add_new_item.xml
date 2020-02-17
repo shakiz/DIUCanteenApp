@@ -26,10 +26,10 @@
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="36dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/editext_back"
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
@@ -44,10 +44,10 @@
                     android:id="@+id/itemNameXMl"/>
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="36dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:inputType="number"
                     android:layout_below="@id/itemNameXMl"
                     android:background="@drawable/editext_back"
@@ -64,11 +64,11 @@
                     android:id="@+id/itemStockXMl"/>
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="36dp"
+                    android:layout_height="40dp"
                     android:inputType="number"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="8dp"
                     android:background="@drawable/editext_back"
                     android:ellipsize="end"
                     android:scrollHorizontally="true"
@@ -97,18 +97,21 @@
                     <Spinner
                         android:layout_width="match_parent"
                         style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_height="36dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/rectangle_background"
                         android:id="@+id/spinnerItemCategoryXML"/>
 
                 </LinearLayout>
 
                 <Button
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_centerInParent="true"
                     android:layout_below="@id/spinnerLayout"
                     android:id="@+id/addImageForItemXML"
-                    android:layout_margin="10dp"
+                    android:layout_margin="12dp"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:padding="10dp"
                     android:background="@drawable/buttons_shape"
                     android:text="@string/import_image"
@@ -116,17 +119,17 @@
                     android:textAllCaps="false"/>
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="144dp"
+                    android:layout_height="144dp"
                     android:id="@+id/imageThumbnailOfImportedImageXML"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_image_black_24dp"
                     android:layout_margin="10dp"
                     android:layout_centerInParent="true"
                     android:layout_below="@id/addImageForItemXML"/>
                 <Button
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_centerInParent="true"
                     android:layout_below="@id/imageThumbnailOfImportedImageXML"
                     android:padding="10dp"
