@@ -20,8 +20,8 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:id="@+id/foodItemIconXML"
@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".8"
                 android:padding="5dp"
-                android:gravity="center_vertical"
+                android:gravity="center|left"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:orientation="vertical">
                 <TextView

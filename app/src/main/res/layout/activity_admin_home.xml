@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:elevation="4dp"
-        app:insetForeground="#44383838"
+        app:insetForeground="@color/md_blue_grey_800"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:itemBackground="@drawable/menu_background_color"

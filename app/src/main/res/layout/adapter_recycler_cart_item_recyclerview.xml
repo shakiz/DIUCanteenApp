@@ -159,6 +159,7 @@
                     android:layout_height="36dp"
                     android:layout_gravity="center"
                     android:clickable="true"
+                    android:padding="4dp"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_edit_black_24dp" />
 
@@ -167,6 +168,7 @@
                     android:layout_height="36dp"
                     android:layout_marginTop="8dp"
                     android:clickable="true"
+                    android:padding="4dp"
                     android:layout_gravity="center"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:id="@+id/deleteItemButtonXML"

@@ -1,6 +1,5 @@
 package app.com.diucanteenapp.fragments.admin;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,17 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
+import android.widget.TextView;
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.utils.adapters.RecyclerViewAdapterForUserRequests;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.utils.dbhelper.DatabaseHelperLoginAndRegistration;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UserRequestApprovalFragment extends Fragment {
 
     private static String TAG = "UserRequestApproval";
@@ -35,6 +29,7 @@ public class UserRequestApprovalFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayout linearLayout;
     private Context context;
+    private TextView noData;
 
     public UserRequestApprovalFragment() {
         // Required empty public constructor
@@ -60,7 +55,7 @@ public class UserRequestApprovalFragment extends Fragment {
             setAdapter();
         }
         else {
-            Toast.makeText(context,"No user requests to approve",Toast.LENGTH_LONG).show();
+            noData.setVisibility(View.VISIBLE);
         }
         //Setting the swipe listener when the user swipe to refresh
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -90,6 +85,7 @@ public class UserRequestApprovalFragment extends Fragment {
 
     private void init(View view) {
         recyclerView=view.findViewById(R.id.recyclerViewUserRequestsXML);
+        noData = view.findViewById(R.id.NoData);
         userArrayList=new ArrayList<>();
         linearLayout=view.findViewById(R.id.linearLayoutUserStatus);
         swipeRefreshLayout=view.findViewById(R.id.swipeRefreshLayoutApproveUser);

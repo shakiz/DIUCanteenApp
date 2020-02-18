@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
 import app.com.diucanteenapp.utils.dbhelper.StoreFoodItemData;
 import app.com.diucanteenapp.model.shared.FoodItemModel;
@@ -26,12 +27,11 @@ public class ViewAllProductFragment extends Fragment {
     private StoreFoodItemData storeFoodItemData;
     private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayout linearLayout;
-
+    private TextView noData;
 
     public ViewAllProductFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +43,14 @@ public class ViewAllProductFragment extends Fragment {
         //This method will be used to get all the available food item list from our database
         getAllFoodItemData();
         //This method will be used to set recyclerview adapter
-        setAdapter();
+        if (foodItemModelArrayList != null) {
+            if (foodItemModelArrayList.size() !=0 ){
+                setAdapter();
+            }
+        }
+        else {
+            noData.setVisibility(View.VISIBLE);
+        }
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -69,6 +76,7 @@ public class ViewAllProductFragment extends Fragment {
 
     private void init(View view) {
         recyclerViewItemDetails = view.findViewById(R.id.recyclerViewAllItemForAdminXML);
+        noData = view.findViewById(R.id.NoData);
         foodItemModelArrayList=new ArrayList<>();
         layoutManager=new LinearLayoutManager(getContext());
         storeFoodItemData=new StoreFoodItemData(getContext());

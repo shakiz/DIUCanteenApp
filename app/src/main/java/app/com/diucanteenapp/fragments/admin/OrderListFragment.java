@@ -1,6 +1,5 @@
 package app.com.diucanteenapp.fragments.admin;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,8 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,17 +24,10 @@ public class OrderListFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerViewAdapterForOrderList recyclerViewAdapterForOrderList;
     private DatabaseHelperPlaceOrder databaseHelperPlaceOrder;
-    private LinearLayout linearLayout;
-    private Context context;
+    private TextView noData;
 
     public OrderListFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        this.context=context;
     }
 
     @Override
@@ -54,7 +45,7 @@ public class OrderListFragment extends Fragment {
             setAdapter();
         }
         else{
-            Toast.makeText(context,"No orders to show",Toast.LENGTH_LONG).show();
+            noData.setVisibility(View.VISIBLE);
         }
         return view;
     }
@@ -68,9 +59,9 @@ public class OrderListFragment extends Fragment {
 
     private void init(View view) {
         recyclerViewOrderList=view.findViewById(R.id.recyclerViewOrderListXML);
+        noData = view.findViewById(R.id.NoData);
         orderItemModels=new ArrayList<>();
         layoutManager=new LinearLayoutManager(getContext());
-        linearLayout=view.findViewById(R.id.linearLayoutOrderListXML);
         databaseHelperPlaceOrder=new DatabaseHelperPlaceOrder(getContext());
     }
 

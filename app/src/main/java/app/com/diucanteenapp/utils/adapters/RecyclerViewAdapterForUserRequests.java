@@ -8,13 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.utils.dbhelper.DatabaseHelperLoginAndRegistration;
 
@@ -34,7 +32,7 @@ public class RecyclerViewAdapterForUserRequests extends RecyclerView.Adapter<Rec
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_view_for_user_requests,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_recycler_for_user_requests,viewGroup,false);
         return new RecyclerViewAdapterForUserRequests.ViewHolder(view);
     }
 
@@ -70,7 +68,7 @@ public class RecyclerViewAdapterForUserRequests extends RecyclerView.Adapter<Rec
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView userName;
-        Button addButton,removeButton;
+        ImageView addButton,removeButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

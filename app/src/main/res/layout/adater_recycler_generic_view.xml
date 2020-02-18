@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
+        app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@color/md_white_1000"
         android:translationZ="4dp">
 
@@ -22,8 +23,8 @@
             android:layout_weight="1">
 
             <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:id="@+id/foodItemIconXML"
@@ -106,6 +107,7 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_marginRight="12dp"
+                        android:padding="4dp"
                         android:src="@drawable/ic_edit_black_24dp"
                         android:clickable="true"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -116,6 +118,7 @@
                         android:layout_height="36dp"
                         android:layout_marginLeft="12dp"
                         android:clickable="true"
+                        android:padding="4dp"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
                         android:id="@+id/foodItemDeleteXML"
                         android:src="@drawable/ic_delete_black_24dp"/>
