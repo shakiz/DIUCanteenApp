@@ -2,8 +2,10 @@ package app.com.diucanteenapp.activities.student;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +28,7 @@ import app.com.diucanteenapp.fragments.student.LunchFragment;
 import app.com.diucanteenapp.fragments.student.MorningSnacksFragment;
 
 public class FoodCategoryActivity extends AppCompatActivity {
-
+    private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private TextView addCartDetails;
@@ -43,6 +45,15 @@ public class FoodCategoryActivity extends AppCompatActivity {
         //This method will be used to initialize all the attributes with xml and takes view as the parameter
         init();
 
+        setSupportActionBar(toolbar);
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exitApp();
+            }
+        });
+
         //Setting the on click listener for add cart details
         addCartDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +68,7 @@ public class FoodCategoryActivity extends AppCompatActivity {
     }
 
     public void init(){
+        toolbar = findViewById(R.id.tool_bar);
         viewPager=findViewById(R.id.viewPagerXML);
         tabLayout=findViewById(R.id.tabXML);
         addCartDetails=findViewById(R.id.addToCartXML);
@@ -149,5 +161,12 @@ public class FoodCategoryActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void exitApp(){
+        Intent exitIntent = new Intent(Intent.ACTION_MAIN);
+        exitIntent.addCategory(Intent.CATEGORY_HOME);
+        exitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(exitIntent);
     }
 }

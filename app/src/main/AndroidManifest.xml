@@ -23,13 +23,13 @@
             android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="portrait"
             android:label="@string/add_to_cart"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".activities.student.FoodCategoryActivity"
             android:screenOrientation="portrait"
             android:label="@string/food_type"
             android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".activities.admin.AdminHomeActivity"
             android:screenOrientation="portrait"

@@ -9,21 +9,29 @@
     android:id="@+id/linearLayoutCartXML"
     tools:context=".activities.student.AddToCartActivity">
 
-    <TextView
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".20"
-        android:text="Your carted item"
-        android:gravity="center"
-        android:layout_margin="5dp"
-        android:textStyle="bold"
-        android:textColor="@color/md_grey_800"
-        android:textSize="14sp"/>
+        android:layout_height="48dp"
+        android:id="@+id/app_bar">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tool_bar"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            style="@style/TextAppearance.Widget.Event.Toolbar.Title"
+            app:title="@string/see_cart_details"
+            app:titleTextColor="@color/md_white_1000">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2.6"
+        android:layout_weight="2.8"
         android:id="@+id/swipeRefreshLayout">
 
         <android.support.v7.widget.RecyclerView

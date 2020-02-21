@@ -7,6 +7,24 @@
     android:orientation="vertical"
     tools:context=".activities.student.FoodCategoryActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/app_bar">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tool_bar"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            style="@style/TextAppearance.Widget.Event.Toolbar.Title"
+            app:title="@string/food_type"
+            app:titleTextColor="@color/md_white_1000">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@color/md_grey_800"
             android:layout_weight="1"
             android:text="@string/see_cart_details"
             android:padding="5dp"
@@ -28,16 +46,19 @@
             android:padding="5dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="@color/md_grey_800"
             android:text="@string/cart"
+            android:drawableLeft="@drawable/ic_add_shopping_cart_black_24dp"
+            android:drawablePadding="4dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:layout_margin="5dp"
             android:id="@+id/addToCartXML" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/layout_shadow">
+        android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"

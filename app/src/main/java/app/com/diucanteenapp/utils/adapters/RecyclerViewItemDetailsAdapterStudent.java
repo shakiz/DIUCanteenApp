@@ -42,7 +42,7 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
         viewHolder.itemName.setText(foodItemModel.getItemName());
         viewHolder.itemPrice.setText(""+foodItemModel.getItemPrice()+" Tk.");
         Log.v("VIEW ADAPTER","STOCK CHECK : "+foodItemModel.getItemStockAvailability());
-        viewHolder.itemStock.setText("Stock : "+foodItemModel.getItemStockAvailability());
+        viewHolder.itemStock.setText(""+foodItemModel.getItemStockAvailability());
         viewHolder.itemCategory.setText(foodItemModel.getItemCategory());
         //Here we are getting the picture path that we stored and then retrieving it and finally decoding it and setting it to imageview
         picturePath=foodItemModel.getItemIcon();

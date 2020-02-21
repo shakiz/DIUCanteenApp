@@ -71,7 +71,7 @@ public class DrinksFragment extends Fragment {
     }
 
     private void init(View view) {
-        recyclerViewDrinksItem=view.findViewById(R.id.recyclerViewItemDrinksXML);
+        recyclerViewDrinksItem=view.findViewById(R.id.mRecyclerView);
         layoutManager=new LinearLayoutManager(getContext());
         foodItemModelArrayList=new ArrayList<>();
         storeFoodItemData=new StoreFoodItemData(getContext());

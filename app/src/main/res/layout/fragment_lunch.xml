@@ -5,12 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.student.DrinksFragment">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewItemLunchXML"
-        android:padding="5dp"
-        android:layout_margin="5dp"/>
+    <include
+        layout="@layout/generic_recycler_layout"/>
 
 </LinearLayout>

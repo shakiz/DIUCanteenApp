@@ -70,7 +70,7 @@ public class MorningSnacksFragment extends Fragment {
     }
 
     private void init(View view) {
-        recyclerViewMorningSnacksItem =view.findViewById(R.id.recyclerViewItemMorningSnacksXML);
+        recyclerViewMorningSnacksItem =view.findViewById(R.id.mRecyclerView);
         layoutManager=new LinearLayoutManager(getContext());
         foodItemModelArrayList=new ArrayList<>();
         storeFoodItemData=new StoreFoodItemData(getContext());
