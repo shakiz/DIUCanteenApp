@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="3"
     android:id="@+id/linearLayoutCartXML"
     tools:context=".activities.student.AddToCartActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:id="@+id/app_bar">
+        android:layout_height="48dp">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tool_bar"
             app:navigationIcon="?attr/homeAsUpIndicator"
             style="@style/TextAppearance.Widget.Event.Toolbar.Title"
             app:title="@string/see_cart_details"
@@ -27,34 +26,73 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
+    <LinearLayout
+        android:id="@+id/ListLayout"
+        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.8"
-        android:id="@+id/swipeRefreshLayout">
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:layout_below="@id/app_bar"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.8"
+            android:id="@+id/swipeRefreshLayout">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cartRecyclerViewXML"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <Button
+            android:id="@+id/OrderAllItem"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_weight=".20"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:background="@drawable/buttons_shape"
+            android:text="@string/order"
+            android:textAllCaps="false"
+            android:textColor="@color/md_white_1000"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/NoDataLayout"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/SadIcon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_sad"/>
+
+        <TextView
+            android:id="@+id/NoData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_margin="10dp"
-            android:id="@+id/cartRecyclerViewXML"/>
+            android:text="@string/no_data"
+            android:textColor="@color/md_red_400"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/SadIcon"/>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_weight=".20"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:background="@drawable/buttons_shape"
-        android:text="@string/order"
-        android:textAllCaps="false"
-        android:textColor="@color/md_white_1000"
-        android:id="@+id/OrderAllItem"/>
 
-</LinearLayout>
+</RelativeLayout>

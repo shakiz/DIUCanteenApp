@@ -26,6 +26,7 @@ import app.com.diucanteenapp.utils.dbhelper.StoreFoodItemData;
 import app.com.diucanteenapp.fragments.admin.EditItemFragment;
 import app.com.diucanteenapp.model.shared.FoodItemModel;
 import app.com.diucanteenapp.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<RecyclerViewItemDetailsAdapter.ViewHolder>{
     private ArrayList<FoodItemModel> foodItemModelArrayList;
@@ -102,7 +103,8 @@ public class RecyclerViewItemDetailsAdapter extends RecyclerView.Adapter<Recycle
     public class ViewHolder extends RecyclerView.ViewHolder{
         //Here we are initializing all the components that we have for item
         private TextView itemName,itemPrice,itemCategory,foodItemStock;
-        private ImageView itemIcon,itemEdit,itemDelete;
+        private ImageView itemEdit,itemDelete;
+        CircleImageView itemIcon;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemName=itemView.findViewById(R.id.foodItemItemNameXML);

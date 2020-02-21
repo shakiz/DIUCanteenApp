@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.activities.admin.AdminHomeActivity;
+import app.com.diucanteenapp.activities.student.FoodCategoryActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                         startActivity(new Intent(SplashActivity.this, AdminHomeActivity.class));
                     }
                     else if (userDetailsSharedPreferences.getString("type",null).equals("Student")){
-                        startActivity(new Intent(SplashActivity.this, AdminHomeActivity.class));
+                        startActivity(new Intent(SplashActivity.this, FoodCategoryActivity.class));
                     }
                 }
                 catch (Exception e){

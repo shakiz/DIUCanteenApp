@@ -68,6 +68,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/md_white_1000"
+                app:tabTextColor="@color/md_grey_600"
+                app:tabSelectedTextColor="@color/md_grey_900"
                 app:tabMode="fixed"
                 app:tabGravity="fill"
                 android:id="@+id/tabXML"/>

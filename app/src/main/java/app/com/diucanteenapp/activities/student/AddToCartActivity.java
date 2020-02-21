@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.util.ArrayList;
 import app.com.diucanteenapp.R;
@@ -32,7 +33,8 @@ public class AddToCartActivity extends AppCompatActivity {
     private String TAG="AddToCartActivity";
     private int total=0;
     private String userEmailStr;
-    private LinearLayout linearLayout;
+    private LinearLayout ListItemLayout;
+    private RelativeLayout NoDataLayout, mainLayout;
     private Button orderBtn;
 
     @Override
@@ -59,9 +61,13 @@ public class AddToCartActivity extends AppCompatActivity {
         if (cartModelArrayList.size()>0){
             //This method will be used to set the adapter for cart recyclerView
             setAdapter();
+            ListItemLayout.setVisibility(View.VISIBLE);
+            NoDataLayout.setVisibility(View.GONE);
         }
         else{
-            Snackbar.make(linearLayout,"You do not have any cart item",Snackbar.LENGTH_LONG).show();
+            ListItemLayout.setVisibility(View.GONE);
+            NoDataLayout.setVisibility(View.VISIBLE);
+            Snackbar.make(mainLayout,"You do not have any cart item",Snackbar.LENGTH_LONG).show();
         }
         //Here we are implementing swipe to refresh option to our activity
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -106,7 +112,9 @@ public class AddToCartActivity extends AppCompatActivity {
         cartModelArrayList=new ArrayList<>();
         swipeRefreshLayout=findViewById(R.id.swipeRefreshLayout);
         orderBtn = findViewById(R.id.OrderAllItem);
-        linearLayout=findViewById(R.id.linearLayoutCartXML);
+        mainLayout =findViewById(R.id.linearLayoutCartXML);
+        NoDataLayout = findViewById(R.id.NoDataLayout);
+        ListItemLayout = findViewById(R.id.ListLayout);
     }
 
     @Override
