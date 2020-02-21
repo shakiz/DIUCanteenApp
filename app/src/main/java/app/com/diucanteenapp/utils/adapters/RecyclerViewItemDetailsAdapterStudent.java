@@ -7,20 +7,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.model.shared.FoodItemModel;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.utils.dbhelper.DatabaseHelperSaveCartDetails;
 import app.com.diucanteenapp.model.students.CartModel;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<RecyclerViewItemDetailsAdapterStudent.ViewHolder>{
     private ArrayList<FoodItemModel> foodItemModelArrayList;
@@ -32,8 +29,7 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //This will create and inflater which will later be used to inflate the layout
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_recycler_for_all_item_for_student_recyclerview,viewGroup,false);
-        return new ViewHolder(view);
+        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_generic_recycler_for_all_item,viewGroup,false));
     }
 
     @Override
@@ -57,7 +53,7 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
             Log.v("ERROR PATH : ",""+e.getMessage());
         }
         //Handling the add to cart button works
-        viewHolder.itemAddTocart.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (databaseHelperSaveCartDetails.checkItemExistence(foodItemModel.getItemName())){
@@ -83,7 +79,8 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
     public class ViewHolder extends RecyclerView.ViewHolder{
         //Here we are initializing all the components that we have for item
         private TextView itemName,itemPrice,itemCategory,itemStock;
-        private ImageView itemIcon,itemAddTocart;
+        private CircleImageView itemIcon;
+        ImageView itemAddToCart;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,7 +89,7 @@ public class RecyclerViewItemDetailsAdapterStudent extends RecyclerView.Adapter<
             itemStock=itemView.findViewById(R.id.foodItemStockXML);
             itemCategory=itemView.findViewById(R.id.foodItemCategoryXML);
             itemIcon=itemView.findViewById(R.id.foodItemIconXML);
-            itemAddTocart =itemView.findViewById(R.id.foodItemAddToCartXML);
+            itemAddToCart =itemView.findViewById(R.id.foodItemAddToCartXML);
         }
     }
 

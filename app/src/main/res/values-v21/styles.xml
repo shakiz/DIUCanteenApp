@@ -6,12 +6,14 @@
         <item name="colorPrimary">@color/md_blue_grey_800</item>
         <item name="colorPrimaryDark">@color/md_blue_grey_400</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/md_white_1000</item>
     </style>
 
     <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/md_blue_grey_700</item>
         <item name="colorPrimaryDark">@color/md_blue_grey_700</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/md_white_1000</item>
     </style>
 
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
@@ -41,5 +43,12 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    </style>
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
 
 </resources>
