@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.utils.adapters.RecyclerViewAdapterForOrderList;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.utils.dbhelper.DatabaseHelperPlaceOrder;

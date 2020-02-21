@@ -39,13 +39,24 @@ public class DrinksFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_drinks, container, false);
         //This method will be used to initialize all the attributes with xml
         init(view);
+        bindUiWithComponents();
+        return view;
+    }
+
+    private void bindUiWithComponents() {
         //This method will be used to get bundle data from previous activity
         getBundleData();
         //This method will be used to get all the drinks category data from database
         getDrinksData();
         //This method will be used to set the adapter for recyclerView
         setAdapter();
-        return view;
+    }
+
+    private void init(View view) {
+        recyclerViewDrinksItem=view.findViewById(R.id.mRecyclerView);
+        layoutManager=new LinearLayoutManager(getContext());
+        foodItemModelArrayList=new ArrayList<>();
+        storeFoodItemData=new StoreFoodItemData(getContext());
     }
 
     private void setAdapter() {
@@ -68,13 +79,6 @@ public class DrinksFragment extends Fragment {
 
     private void getDrinksData() {
         foodItemModelArrayList=storeFoodItemData.getItemListBasedOnCategory("Drinks");
-    }
-
-    private void init(View view) {
-        recyclerViewDrinksItem=view.findViewById(R.id.mRecyclerView);
-        layoutManager=new LinearLayoutManager(getContext());
-        foodItemModelArrayList=new ArrayList<>();
-        storeFoodItemData=new StoreFoodItemData(getContext());
     }
 
 }

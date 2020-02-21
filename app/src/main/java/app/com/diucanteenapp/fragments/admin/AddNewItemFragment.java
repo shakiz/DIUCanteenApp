@@ -1,6 +1,5 @@
 package app.com.diucanteenapp.fragments.admin;
 
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -25,13 +24,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.utils.dbhelper.StoreFoodItemData;
 import app.com.diucanteenapp.model.shared.FoodItemModel;
 import app.com.diucanteenapp.R;
-
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 

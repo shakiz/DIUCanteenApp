@@ -9,6 +9,15 @@
         <item name="android:textColorSecondary">@color/md_white_1000</item>
     </style>
 
+    <!-- Splash application theme. -->
+    <style name="SplashAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorControlNormal">@color/md_white_1000</item>
+        <item name="colorPrimary">@color/commonColor</item>
+        <item name="colorPrimaryDark">@color/md_white_1000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/md_blue_grey_700</item>
         <item name="colorPrimaryDark">@color/md_blue_grey_700</item>

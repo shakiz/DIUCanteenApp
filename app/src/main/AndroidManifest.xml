@@ -13,40 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
         <activity
-            android:name=".activities.student.PaymentAndOrderActivity"
+            android:name=".activities.onboard.SplashActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            android:label="@string/payment"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.student.AddToCartActivity"
-            android:windowSoftInputMode="adjustNothing"
-            android:screenOrientation="portrait"
-            android:label="@string/add_to_cart"
-            android:theme="@style/AppThemeNoActionBar" />
-        <activity
-            android:name=".activities.student.FoodCategoryActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/food_type"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppThemeNoActionBar" />
-        <activity
-            android:name=".activities.admin.AdminHomeActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"
-            android:label="@string/title_activity_admin_home"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.onboard.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/register"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppThemeNoActionBar" />
-
-        <activity
-            android:name=".activities.onboard.LoginActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:screenOrientation="portrait"
+            android:theme="@style/SplashAppTheme"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,6 +23,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.student.PaymentAndOrderActivity"
+            android:label="@string/payment"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activities.student.AddToCartActivity"
+            android:label="@string/add_to_cart"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activities.student.FoodCategoryActivity"
+            android:label="@string/food_type"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activities.admin.AdminHomeActivity"
+            android:label="@string/title_activity_admin_home"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activities.onboard.RegisterActivity"
+            android:label="@string/register"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".activities.onboard.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="adjustNothing"/>
     </application>
 
 </manifest>

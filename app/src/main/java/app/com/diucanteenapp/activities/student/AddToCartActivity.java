@@ -108,4 +108,9 @@ public class AddToCartActivity extends AppCompatActivity {
         orderBtn = findViewById(R.id.OrderAllItem);
         linearLayout=findViewById(R.id.linearLayoutCartXML);
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(AddToCartActivity.this,FoodCategoryActivity.class));
+    }
 }

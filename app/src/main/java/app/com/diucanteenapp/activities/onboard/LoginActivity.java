@@ -21,7 +21,7 @@ import app.com.diucanteenapp.activities.student.FoodCategoryActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String TAG="LoginActivity";
+    private String TAG="Shakil-LoginActivity";
     private TextView registerYourself;
     private Button loginButton;
     private EditText email,password;
@@ -39,25 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //This method will be used to initialize all the attributes with xml
         init();
-//        //Here we are checking if an user is already logged on or not
-        try{
-            if (userDetailsSharedPreferences.getString("type",null).equals("Admin")){
-                startActivity(new Intent(LoginActivity.this,AdminHomeActivity.class));
-            }
-            else{
-                startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class));
-            }
-        }
-        catch (Exception e){
-            Log.v(TAG,e.getMessage());
-        }
-        try{
-            Log.v(TAG,""+userDetailsSharedPreferences.getString("email",null));
-            Log.v(TAG,""+userDetailsSharedPreferences.getString("type",null));
-        }
-        catch (Exception e){
-            Log.v(TAG,e.getMessage());
-        }
         //This method will be used to insert data into spinnerDataArrayList
         insertData();
         //This method will be used to populate the spinner by using array adapter
@@ -96,11 +77,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setSpinnerAdapter() {
-        // Creating adapter for spinner
         spinnerArrayAdapter=new ArrayAdapter<>(this,R.layout.spinner_drop,spinnerDataArrayList);
-        // Drop down layout style - list view with radio button
         spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-        // attaching data adapter to spinner
         userTypeSpinner.setAdapter(spinnerArrayAdapter);
     }
 
@@ -111,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void inputValidation(String emailStr,String passwordStr) {
-
         if (emailStr.isEmpty() && passwordStr.isEmpty()){
             email.requestFocus();
             email.setError("Email can not be empty.");
@@ -144,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                     userDetailsEditor.putString("email",emailStr);
                     userDetailsEditor.putString("type",userTypeStr);
                     userDetailsEditor.commit();
-                    //Starting the admin activity
                     startActivity(new Intent(LoginActivity.this,AdminHomeActivity.class));
                 }
                 else{
@@ -167,7 +143,6 @@ public class LoginActivity extends AppCompatActivity {
                     userDetailsEditor.putString("email",emailStr);
                     userDetailsEditor.putString("type",userTypeStr);
                     userDetailsEditor.commit();
-                    //Starting the user activity for the item category
                     startActivity(new Intent(LoginActivity.this,FoodCategoryActivity.class));
                 }
                 else{
@@ -193,5 +168,17 @@ public class LoginActivity extends AppCompatActivity {
         //The following two lines of code will be used to start a session for the user
         userDetailsSharedPreferences=getSharedPreferences("user_details",MODE_PRIVATE);
         userDetailsEditor=userDetailsSharedPreferences.edit();
+    }
+
+    public void exitApp(){
+        Intent exitIntent = new Intent(Intent.ACTION_MAIN);
+        exitIntent.addCategory(Intent.CATEGORY_HOME);
+        exitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(exitIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        exitApp();
     }
 }

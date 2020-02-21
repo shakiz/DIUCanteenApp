@@ -13,15 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-
 import java.util.ArrayList;
-
 import app.com.diucanteenapp.utils.dbhelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
 
@@ -71,10 +68,6 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         orderAfterPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Here we are telling that after placing the order a qr code will also be generated
-                //and later it will show on a pop dialog
-                //this  posts a message to the main thread from our timertask
-                //and updates the text field
                 startTime = System.currentTimeMillis();
                 timerHandler.postDelayed(timerRunnable, 0);
                 final Dialog dialog=new Dialog(PaymentAndOrderActivity.this);
@@ -90,12 +83,6 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
                 catch (Exception e){
                     Log.v(TAG,e.getMessage());
                 }
-//                if (storeFoodItemData.updateItemStock(itemName,(stock-itemQuantity))==true){
-//                    Toast.makeText(getApplicationContext(),"Updated stock",Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    Toast.makeText(getApplicationContext(),"Update failed",Toast.LENGTH_SHORT).show();
-//                }
             }
         });
     }
@@ -156,6 +143,8 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         }
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(PaymentAndOrderActivity.this,AddToCartActivity.class));
+    }
 }

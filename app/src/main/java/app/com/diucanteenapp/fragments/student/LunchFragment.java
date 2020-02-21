@@ -43,13 +43,24 @@ public class LunchFragment extends Fragment {
 
         //This method will be used to initialize all the attributes with xml
         init(view);
+        bindUiWithComponents();
+        return view;
+    }
+
+    private void init(View view) {
+        recyclerViewLunchItem =view.findViewById(R.id.mRecyclerView);
+        layoutManager=new LinearLayoutManager(getContext());
+        foodItemModelArrayList=new ArrayList<>();
+        storeFoodItemData=new StoreFoodItemData(getContext());
+    }
+
+    private void bindUiWithComponents() {
         //This method will be used to get bundle data from previous activity
         getBundleData();
         //This method will be used to get all the drinks category data from database
         getEveningSnacksData();
         //This method will be used to set the adapter for recyclerView
         setAdapter();
-        return view;
     }
 
     public void getBundleData(){
@@ -73,13 +84,4 @@ public class LunchFragment extends Fragment {
     private void getEveningSnacksData() {
         foodItemModelArrayList=storeFoodItemData.getItemListBasedOnCategory("Lunch");
     }
-
-    private void init(View view) {
-        recyclerViewLunchItem =view.findViewById(R.id.mRecyclerView);
-        layoutManager=new LinearLayoutManager(getContext());
-        foodItemModelArrayList=new ArrayList<>();
-        storeFoodItemData=new StoreFoodItemData(getContext());
-    }
-
-
 }

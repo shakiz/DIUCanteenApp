@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import app.com.diucanteenapp.utils.dbhelper.DatabaseHelperLoginAndRegistration;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.model.shared.User;
@@ -117,5 +116,10 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton=findViewById(R.id.registerButtonXML);
         databaseHelperLoginAndRegistration =new DatabaseHelperLoginAndRegistration(getApplicationContext());
         user=new User();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
     }
 }

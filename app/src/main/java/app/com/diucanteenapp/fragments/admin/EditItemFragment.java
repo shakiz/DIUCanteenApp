@@ -1,6 +1,5 @@
 package app.com.diucanteenapp.fragments.admin;
 
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -31,12 +30,8 @@ import java.util.ArrayList;
 import app.com.diucanteenapp.utils.dbhelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
 import app.com.diucanteenapp.model.shared.FoodItemModel;
-
 import static android.app.Activity.RESULT_OK;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class EditItemFragment extends Fragment {
 
     public static String TAG="EditItemFragment";
@@ -66,7 +61,6 @@ public class EditItemFragment extends Fragment {
         this.context=context;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,8 +68,6 @@ public class EditItemFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_edit_item, container, false);
         //This method will be used to initialize all the attributes with xml
         init(view);
-
-
 
         //This method will get the data from previous fragment and will set those data to edit fragments components
         getBundleDataAndSetToComponents();
@@ -165,12 +157,6 @@ public class EditItemFragment extends Fragment {
         if (bundle != null) {
             foodItemModel = bundle.getParcelable("data"); // Key
         }
-        //In the following 5 lines of code we are retrieving the data from previous fragment
-//        itemNameStr=this.getArguments().getString("name");
-//        itemCategoryStr=this.getArguments().getString("category");
-//        itemStockInt=this.getArguments().getInt("stock");
-//        itemPriceDouble=this.getArguments().getDouble("price");
-//        picturePath=this.getArguments().getString("path");
 
         itemNameStr = foodItemModel.getItemName();
         itemCategoryStr = foodItemModel.getItemCategory();
@@ -255,7 +241,6 @@ public class EditItemFragment extends Fragment {
         //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
         String[] mimeTypes = {"image/jpeg", "image/png" , "image/jpg"};
         intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
-        // Launching the Intent
         startActivityForResult(intent,REQUEST_GET_SINGLE_FILE);
     }
 
@@ -276,7 +261,6 @@ public class EditItemFragment extends Fragment {
             //Setting the image path by means of decoding the path
             thumbnailImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 
-            //Logging the image path
             Log.v("Image path : ",picturePath);
 
         }
