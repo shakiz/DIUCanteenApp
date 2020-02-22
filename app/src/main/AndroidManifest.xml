@@ -27,7 +27,7 @@
             android:name=".activities.student.PaymentAndOrderActivity"
             android:label="@string/payment"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activities.student.AddToCartActivity"

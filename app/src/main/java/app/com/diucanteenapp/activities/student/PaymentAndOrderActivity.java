@@ -3,9 +3,11 @@ package app.com.diucanteenapp.activities.student;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,7 @@ import app.com.diucanteenapp.utils.dbhelper.StoreFoodItemData;
 import app.com.diucanteenapp.R;
 
 public class PaymentAndOrderActivity extends AppCompatActivity {
-
+    private Toolbar toolbar;
     private String TAG = "PaymentOrderActivity";
     private ImageView qrCodeImageView;
     private TextView timer,time,totalAmountTXT;
@@ -60,6 +62,16 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_and_order);
         //This method is used to initialize the attributes with xml
         init();
+
+        setSupportActionBar(toolbar);
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_ATOP);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PaymentAndOrderActivity.this, AddToCartActivity.class));
+            }
+        });
+
         //This method will be used to get data from previous activity or fragment
         getAndSetData();
 
@@ -118,6 +130,7 @@ public class PaymentAndOrderActivity extends AppCompatActivity {
     }
 
     public void init(){
+        toolbar = findViewById(R.id.tool_bar);
         orderAfterPayment=findViewById(R.id.orderButtonXMLPayment);
         storeFoodItemData=new StoreFoodItemData(getApplicationContext());
         paymentMethodSpinner = findViewById(R.id.paymentMethodsSpinner);

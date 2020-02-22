@@ -59,4 +59,9 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="CheckboxStyle" parent="AppTheme">
+        <item name="colorAccent">@color/md_blue_grey_400</item>
+        <item name="android:textColorSecondary">@color/md_grey_800</item>
+    </style>
+
 </resources>

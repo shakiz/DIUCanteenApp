@@ -53,9 +53,6 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
         singleQuantity = new int[cartModelArrayList.size()];
     }
 
-    public RecyclerViewAdapterForCartItem() {
-    }
-
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int position) {
         final CartModel cartModel=cartModelArrayList.get(position);
@@ -66,8 +63,7 @@ public class RecyclerViewAdapterForCartItem extends RecyclerView.Adapter<Recycle
         viewHolder.itemPrice.setText(price+""+" Tk.");
         Log.v(TAG,"STOCK : > "+itemStock);
         Log.v(TAG,"PRICE  : > "+price);
-        viewHolder.itemStock.setText(""+itemStock);
-
+        viewHolder.itemStock.setText("Stock:"+itemStock);
 
         viewHolder.increaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
